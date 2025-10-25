@@ -87,7 +87,7 @@ nav {
 	position: sticky;
 	top: 0;
 	background: url(assets/background/background_light.webp) no-repeat top center;
-	background-size: contain;
+	background-size: cover;
 	background-attachment: fixed;
 	box-shadow: var(--shadow);
 	border-radius: calc(var(--space-base) * 2) calc(var(--space-base) / 2);
