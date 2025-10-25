@@ -40,9 +40,9 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: calc(var(--space-base) / 2);
 	border: none;
 	border-radius: 999rem;
-	aspect-ratio: 1 / 1;
 	cursor: pointer;
 	box-shadow: var(--shadow);
 	background-color: transparent;
@@ -73,12 +73,17 @@ header {
 		align-items: center;
 	}
 }
+header > button.dark-light-btn {
+	aspect-ratio: 1 / 1;
+}
 /* Menu / nav */
 nav {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: calc(var(--space-base) * 4);
+	position: sticky;
+	top: 0;
 }
 nav > ul {
 	display: flex;
@@ -113,6 +118,19 @@ nav > ul > li > a.active {
 main {
 	min-height: calc(100vh - calc(var(--space-base) * 12));
 	background-color: transparent;
+}
+
+/* Footer */
+footer {
+	text-align: center;
+	a {
+		text-decoration: none;
+		opacity: 0.6;
+		font-size: 0.9rem;
+	}
+	a:visited {
+		color: inherit;
+	}
 }
 /* Media queries */
 @media (max-width: 1024px) {
