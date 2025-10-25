@@ -136,12 +136,13 @@ main {
 /* Footer */
 footer {
 	text-align: center;
-	a {
+}
+footer > a {
+		color: var(--font);
 		text-decoration: none;
 		opacity: 0.7;
 		font-size: 0.9rem;
 	}
-}
 /* Media queries */
 @media (max-width: 1024px) {
 	body {
