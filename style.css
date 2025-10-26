@@ -38,8 +38,8 @@ body {
 		0 2px 4px var(--font);
 }
 *::selection {
-	background-color: var(--secondary);
-	color: var(--bg);
+	background-color: var(--primary);
+	color: var(--secondary);
 }
 /* General default display*/
 body,
@@ -47,7 +47,6 @@ nav {
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
-	transition: background linear 0.3s;
 }
 a:visited {
 	color: inherit;
@@ -110,13 +109,13 @@ nav {
 	height: calc(var(--space-base) * 4);
 	position: sticky;
 	top: 0;
-	box-shadow: var(--shadow);
+	border-bottom: 2px solid var(--primary);
 	border-radius: var(--space-base) var(--space-base) calc(var(--space-base) * 4)
 		calc(var(--space-base) * 4);
 	transition: box-shadow ease 0.3s;
 }
 nav:hover {
-	box-shadow: var(--shadow-big);
+	box-shadow: var(--shadow);
 }
 nav > ul {
 	display: flex;
@@ -148,7 +147,7 @@ nav > ul > li > a.active {
 main {
 	border-top: 2px solid var(--primary);
 	border-bottom: 2px solid var(--primary);
-	border-radius: 4px;
+	border-radius: calc(var(--space-base) / 2);
 	min-height: calc(100vh - calc(var(--space-base) * 12));
 	padding: calc(var(--space-base) * 2);
 	margin-block: calc(var(--space-base) * 3);
