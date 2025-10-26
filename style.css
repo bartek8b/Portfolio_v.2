@@ -47,6 +47,7 @@ nav {
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
+	transition: background linear 0.3s;
 }
 a:visited {
 	color: inherit;
