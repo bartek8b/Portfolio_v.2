@@ -28,16 +28,15 @@ body {
 :root {
 	--space-base: 1rem;
 
-	--primary: #781f4f;
-	--secondary: #22183a;
+	--primary: hsl(328, 59%, 10%);
+	--secondary: hsl(328, 59%, 30%);
 
 	--bg: hsl(0, 0%, 90%);
-	--bg-light: hsl(0, 0%, 100%);
 	--font: hsl(0, 0%, 20%);
 
-	--shadow: inset 0 1px 2px var(--bg-light), 0 1px 2px var(--primary),
+	--shadow: inset 0 1px 2px var(--bg), 0 1px 2px var(--primary),
 		0 1px 2px var(--font);
-	--shadow-big: inset 0 1px 2px var(--bg-light), 0 2px 4px var(--primary),
+	--shadow-big: inset 0 1px 2px var(--bg), 0 2px 4px var(--primary),
 		0 2px 4px var(--font);
 }
 *::selection {
@@ -151,7 +150,6 @@ main {
 	min-height: calc(100vh - calc(var(--space-base) * 12));
 	padding: calc(var(--space-base) * 3);
 	margin-block: calc(var(--space-base) * 3);
-	background-color: #e1e1e1;
 }
 
 /* Footer */
@@ -175,6 +173,14 @@ footer > img {
 	height: auto;
 	width: calc(var(--space-base) * 6);
 	opacity: 0.7;
+}
+/* Theme dark */
+[data-theme='dark'] {
+	--secondary: hsl(328, 59%, 10%);
+	--primary: hsl(328, 59%, 30%);
+
+	--bg: hsl(328, 59%, 5%);
+	--font: hsl(0, 0%, 80%);
 }
 /* Media queries */
 @media (max-width: 1024px) {
