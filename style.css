@@ -24,8 +24,7 @@ body {
 :root {
 	--space-base: 1rem;
 
-	--primary: #290a1b;
-	--secondary: #7a1f50;
+	--primary: #651a42;
 
 	--bg: #e6e6e6;
 	--font: #333333;
@@ -37,7 +36,7 @@ body {
 }
 *::selection {
 	background-color: var(--primary);
-	color: var(--secondary);
+	color: #e6e6e6;
 }
 /* General default display*/
 body,
@@ -90,8 +89,8 @@ main > section > article a.call-to-action-btn {
 	align-items: center;
 	justify-content: center;
 	padding: var(--space-base);
-	border-radius: calc(var(--space-base) * 4) var(--space-base)
-		calc(var(--space-base) * 4) var(--space-base);
+	border-radius: calc(var(--space-base) * 2) calc(var(--space-base) / 2)
+		calc(var(--space-base) * 2) calc(var(--space-base) / 2);
 	box-shadow: var(--shadow);
 	transition: border-radius ease 0.3s, box-shadow ease 0.3s;
 }
@@ -187,11 +186,11 @@ main > section.sub-container.solid-bg {
 	background-color: var(--bg);
 }
 main > section.sub-container p {
-	max-width: 45ch;
+	max-width: 70ch;
 }
 main > section > article.duo-container {
 	display: grid;
-	gap: var(--space-base);
+	gap: calc(var(--space-base) * 4);
 	grid-template-columns: 2fr 1fr;
 }
 main > section > article .hero-logo {
@@ -205,6 +204,18 @@ main > section > article.duo-container > .duo-right {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+}
+main > section > article.grid-container {
+	gap: calc(var(--space-base) * 3);
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(calc(var(--space-base) * 14), 1fr)
+	);
+	grid-auto-rows: 1fr;
+	div {
+		border: 2px solid red;
+	}
 }
 /* ----------Footer---------- */
 footer {
@@ -230,9 +241,6 @@ footer > img {
 }
 /* Theme dark */
 [data-theme='dark'] {
-	--secondary: #290a1b;
-	--primary: #7a1f50;
-
 	--bg: #14050d;
 	--font: #cccccc;
 
