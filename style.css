@@ -83,6 +83,7 @@ h2 {
 	color: var(--primary);
 }
 main > section > article a.call-to-action-btn {
+	color: var(--font);
 	min-width: calc(var(--space-base) * 12);
 	align-self: center;
 	text-decoration: none;
