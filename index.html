@@ -36,16 +36,16 @@
                         description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
                         required: false,
                         onAccept: function () {
-                            // Ładowanie Google Analytics tylko po uzyskaniu zgody
+                            // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag() { dataLayer.push(arguments); }
+
                             const script = document.createElement('script');
                             script.async = true;
                             script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
-
-                            // Obsługa błędów podczas ładowania skryptu
                             script.onerror = function () {
                                 console.error("Nie udało się załadować Google Analytics.");
                             };
-
                             document.head.appendChild(script);
 
                             script.onload = function () {

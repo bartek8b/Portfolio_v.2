@@ -36,29 +36,29 @@
                         description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
                         required: false,
                         onAccept: function () {
-                            // Ładowanie Google Analytics tylko po uzyskaniu zgody
-                            const script = document.createElement('script');
-                            script.async = true;
-                            script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
+    // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
+    script.onerror = function () {
+        console.error("Nie udało się załadować Google Analytics.");
+    };
+    document.head.appendChild(script);
 
-                            // Obsługa błędów podczas ładowania skryptu
-                            script.onerror = function () {
-                                console.error("Nie udało się załadować Google Analytics.");
-                            };
-
-                            document.head.appendChild(script);
-
-                            script.onload = function () {
-                                gtag('js', new Date());
-                                gtag('config', 'G-5KSZFXCY2B');
-                                gtag('consent', 'update', {
-                                    analytics_storage: 'granted',
-                                });
-                                dataLayer.push({
-                                    'event': 'consent_accepted_anonimowa_analiza_ruchu',
-                                });
-                            };
-                        },
+    script.onload = function () {
+        gtag('js', new Date());
+        gtag('config', 'G-5KSZFXCY2B');
+        gtag('consent', 'update', {
+            analytics_storage: 'granted',
+        });
+        dataLayer.push({
+            'event': 'consent_accepted_anonimowa_analiza_ruchu',
+        });
+    };
+},
                         onReject: function () {
                             // Aktualizacja zgody na przechowywanie danych analitycznych
                             if (typeof gtag === "function") {
