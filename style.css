@@ -12,12 +12,10 @@ body {
 	flex-direction: column;
 	gap: var(--space-base);
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
-	background-size: cover;
-	background-attachment: fixed;
 }
 @font-face {
 	font-family: 'headers-font';
-	src: url(assets/fonts/DotMatrix-Regular[ESIZ\,XESP].ttf);
+	src: url(assets/fonts/DotMatrix-Regular.ttf);
 }
 @font-face {
 	font-family: 'text-font';
@@ -44,6 +42,7 @@ body {
 /* General default display*/
 body,
 nav {
+	background-color: var(--secondary);
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
@@ -84,9 +83,8 @@ h2 {
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
 	color: var(--primary);
-	margin-bottom: calc(var(--space-base) * 2);
 }
-/* Header */
+/* ----------Header---------- */
 header {
 	display: flex;
 	align-items: center;
@@ -101,7 +99,7 @@ header {
 header > button.dark-light-btn {
 	aspect-ratio: 1 / 1;
 }
-/* Menu / nav */
+/* ----------nav---------- */
 nav {
 	display: flex;
 	align-items: center;
@@ -143,17 +141,32 @@ nav > ul > li > a.active {
 	height: calc(var(--space-base) * 3);
 	transition: opacity ease 0.3s;
 }
-/* Main */
+
+/* ----------Main---------- */
 main {
 	border-top: 2px solid var(--primary);
 	border-bottom: 2px solid var(--primary);
-	border-radius: calc(var(--space-base) / 2);
+	border-radius: var(--space-base);
 	min-height: calc(100vh - calc(var(--space-base) * 12));
-	padding: calc(var(--space-base) * 2);
+	padding-top: 0;
+	padding-bottom: calc(var(--space-base) * 2);
+	padding-inline: 0;
 	margin-block: calc(var(--space-base) * 3);
 }
-
-/* Footer */
+main > article.sub-container {
+	margin-bottom: calc(var(--space-base) * 2);
+	display: flex;
+	flex-direction: column;
+	padding: calc(var(--space-base) * 2);
+	border-radius: calc(var(--space-base));
+}
+main > article.sub-container.solid-bg {
+	background-color: var(--bg);
+}
+main > article.sub-container p {
+	max-width: 50ch;
+}
+/* ----------Footer---------- */
 footer {
 	text-align: center;
 	display: flex;
@@ -182,6 +195,7 @@ footer > img {
 
 	--bg: #14050d;
 	--font: #cccccc;
+
 	body,
 	nav {
 		background: url(assets/background/background_dark.webp) no-repeat top center;
@@ -205,10 +219,10 @@ footer > img {
 	body {
 		padding-inline: calc(var(--space-base) * 1.5);
 	}
-	main {
-		padding: var(--space-base);
-	}
 	nav > ul {
 		gap: var(--space-base);
+	}
+	main > article.sub-container {
+		padding: var(--space-base);
 	}
 }
