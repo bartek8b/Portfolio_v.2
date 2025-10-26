@@ -104,9 +104,11 @@
 <body>
 
     <header>
-        <a href="index.html"><img src="assets/logo/logo_small.webp" alt=""></a>
+        <a href="index.html" aria-label="Strona główna">
+            <img src="assets/logo/logo_small.webp" alt="Logo 8b.com.pl">
+        </a>
 
-        <button class="dark-light-btn">
+        <button class="dark-light-btn" aria-label="Przełącz motyw: jasny/ciemny">
             <!-- Set dinamically by js -->
         </button>
     </header>
@@ -114,28 +116,28 @@
     <nav>
         <!-- Set class active -->
         <ul>
-            <li><a href="index.html" class="menu-svg-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <li><a href="index.html" class="menu-svg-container" aria-label="Strona główna">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
                     </svg></a>
 
             </li>
-            <li><a href="portfolio.html" class="menu-svg-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <li><a href="portfolio.html" class="menu-svg-container" aria-label="Portfolio">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z" />
                     </svg></a>
 
             </li>
-            <li><a href="services.html" class="menu-svg-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <li><a href="services.html" class="menu-svg-container" aria-label="Usługi">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z" />
                     </svg></a>
 
             </li>
-            <li><a href="contact.html" class="menu-svg-container active">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <li><a href="contact.html" class="menu-svg-container active" aria-label="Kontakt">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path
                             d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
                     </svg>
@@ -148,8 +150,9 @@
     </main>
 
     <footer>
-        <img src="assets/logo/logo.webp" alt="">
-        <a href="https://github.com/bartek8b" target="_blank" rel="noreferrer">&copy; 2025 Bartłomiej Balcerzak</a>
+        <img src="assets/logo/logo.webp" alt="Logo 8b.com.pl">
+        <a href="https://github.com/bartek8b" target="_blank" rel="noreferrer"
+            aria-label="Profil GitHub Bartłomiej Balcerzak">&copy; 2025 Bartłomiej Balcerzak</a>
 
     </footer>
 </body>
