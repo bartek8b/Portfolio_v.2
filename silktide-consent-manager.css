@@ -18,7 +18,7 @@
               --textColor: #333333;
               --backdropBackgroundColor: #00000033;
               --backdropBackgroundBlur: 0px;
-              --cookieIconColor: #333333;
+              --cookieIconColor: hsl(0, 0%, 40%);
               --cookieIconBackgroundColor: #E6E6E6;
               position: fixed;
   bottom: 0;
@@ -476,8 +476,8 @@
   left: 8px;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   padding: 0px;
   border: none;
