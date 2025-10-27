@@ -109,6 +109,7 @@ h2 {
 }
 main > section > article.grid-container > div.portfolio-item,
 main > section > article.grid-container > div.stack-item,
+main > section > article.grid-container > div.services-item,
 main > section.sub-container.solid-bg {
 	box-shadow: 0px 0px 5px #14050d;
 }
@@ -298,14 +299,16 @@ main > section > article.grid-container > .stack-item > svg:hover {
 		fill: #8c8073;
 	}
 }
-/* .portfolio-container */
-main > section > article.grid-container.portfolio-container {
+/* .portfolio-container & services-container */
+main > section > article.grid-container.portfolio-container,
+main > section > article.grid-container.services-container {
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 20), 1fr)
+		minmax(calc(var(--space-base) * 16), 1fr)
 	);
 }
-main > section > article.grid-container > div.portfolio-item {
+main > section > article.grid-container > div.portfolio-item,
+main > section > article.grid-container > div.services-item {
 	gap: calc(var(--space-base) * 3);
 }
 main > section > article > .portfolio-item > img {
@@ -320,7 +323,7 @@ main > section > article > .portfolio-item > img {
 	}
 	&:hover {
 		opacity: 1;
-		cursor:context-menu;
+		cursor: context-menu;
 	}
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
@@ -342,9 +345,30 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 		fill: var(--bg);
 	}
 }
-main > section > article.grid-container.portfolio-container p {
+main > section > article.grid-container p {
 	text-align: center;
 	margin-inline: calc(var(--space-base) * 3);
+}
+main > section > article.grid-container > div.services-item ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--space-base) * 4);
+	align-items: center;
+	justify-content: center;
+	& li{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-base)
+	}
+	& svg{
+		width: 15%;
+		height: auto;
+	}
 }
 
 /* ----------Footer---------- */
