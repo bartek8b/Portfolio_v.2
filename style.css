@@ -137,7 +137,6 @@ img.logo-header {
 	width: auto;
 	filter: invert(30%);
 }
-
 /* ----------nav---------- */
 nav {
 	display: flex;
@@ -151,6 +150,7 @@ nav {
 		calc(var(--space-base) * 4);
 	transition: box-shadow ease 0.3s;
 	z-index: 999;
+	transition: top ease 0.6s;
 }
 nav:hover {
 	box-shadow: var(--shadow);
@@ -390,10 +390,10 @@ main > section > article div.call-to-contact {
 }
 main > section > article div.call-to-contact svg:hover,
 main > section > article div.services-item svg:hover {
-	fill: inherit;
+	fill: var(--font);
 }
 /* Contact.html */
-main > section > article.constact-container {
+main > section > article.contact-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -415,11 +415,12 @@ main > section > article.constact-container {
 		fill: var(--primary);
 	}
 }
-main > section > article.constact-container .contact-svg {
+main > section > article.contact-container .contact-svg {
 	height: auto;
 	width: calc(var(--space-base) * 3);
 	fill: inherit;
 }
+
 /* ----------Footer---------- */
 footer {
 	text-align: center;
@@ -436,7 +437,7 @@ footer > a {
 	font-size: 0.8rem;
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
 	font-weight: lighter;
-	& svg{
+	& svg {
 		height: auto;
 		width: calc(var(--space-base) * 2);
 	}
@@ -446,6 +447,25 @@ footer > img {
 	width: calc(var(--space-base) * 6);
 	opacity: 0.7;
 }
+
+.sub-container > h2{
+	opacity: 0;
+	transform: translateY(-40%);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.contact-container,
+section > article > * {
+	opacity: 0;
+	transform: translateY(20%);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.sub-container > h2.show,
+section > article > *.show,
+.contact-container.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
 /* Theme dark */
 [data-theme='dark'] {
 	--bg: #14050d;
