@@ -213,8 +213,8 @@ main > section > article.duo-container > .duo-right {
 main > section > article.grid-container {
 	gap: calc(var(--space-base) * 2);
 	display: grid;
-
 	grid-auto-rows: 1fr;
+	margin-top: var(--space-base);
 }
 /* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
 main > section > article.grid-container.tech-stack-container {
