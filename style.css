@@ -337,6 +337,7 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 }
 main > section > article.grid-container.portfolio-container p {
 	text-align: center;
+	margin-inline: calc(var(--space-base) * 3);
 }
 
 /* ----------Footer---------- */
