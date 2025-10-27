@@ -108,8 +108,9 @@ h2 {
 	color: var(--primary);
 }
 main > section > article.grid-container > div.portfolio-item,
-main > section > article.grid-container > div.stack-item {
-	box-shadow: -1px 0px 2px #14050d;
+main > section > article.grid-container > div.stack-item,
+main > section.sub-container.solid-bg {
+	box-shadow: 0px 0px 5px #14050d;
 }
 p {
 	max-width: 70ch;
@@ -308,12 +309,18 @@ main > section > article.grid-container > div.portfolio-item {
 	gap: calc(var(--space-base) * 3);
 }
 main > section > article > .portfolio-item > img {
+	opacity: 0.7;
 	max-width: 70%;
+	transition: opacity ease 0.3s;
 	&#calculator {
 		max-width: 50%;
 	}
 	&#carousel {
 		max-width: 50%;
+	}
+	&:hover {
+		opacity: 1;
+		cursor:context-menu;
 	}
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
