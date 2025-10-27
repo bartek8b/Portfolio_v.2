@@ -213,11 +213,15 @@ main > section > article.duo-container > .duo-right {
 main > section > article.grid-container {
 	gap: calc(var(--space-base) * 2);
 	display: grid;
+
+	grid-auto-rows: 1fr;
+}
+/* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
+main > section > article.grid-container.tech-stack-container {
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 14), 1fr)
+		minmax(calc(var(--space-base) * 10), 1fr)
 	);
-	grid-auto-rows: 1fr;
 }
 main > section > article.grid-container > .stack-item {
 	background-color: var(--bg);
