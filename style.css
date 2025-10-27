@@ -231,7 +231,8 @@ main > section > article.grid-container > .stack-item {
 	gap: var(--space-base);
 	justify-content: space-between;
 	align-items: center;
-	padding-bottom: calc(var(--space-base) * 2);
+	padding-bottom: calc(var(--space-base) * 3);
+	
 }
 main > section > article.grid-container > .stack-item > h2 {
 	border-radius: var(--space-base) var(--space-base) 0 0;
@@ -243,9 +244,8 @@ main > section > article.grid-container > .stack-item > h2 {
 	padding: calc(var(--space-base) / 2);
 }
 main > section > article.grid-container > .stack-item > svg {
-	width: 50%;
+	width: 60%;
 	height: auto;
-	padding-block: calc(var(--space-base) * 4);
 	transition: fill ease 0.3s;
 }
 main > section > article.grid-container > .stack-item > svg:hover {
