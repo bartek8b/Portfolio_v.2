@@ -296,7 +296,7 @@ main > section > article.grid-container > .stack-item > svg:hover {
 main > section > article.grid-container.portfolio-container {
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 16), 1fr)
+		minmax(calc(var(--space-base) * 20), 1fr)
 	);
 }
 main > section > article.grid-container > div.portfolio-item {
@@ -329,6 +329,10 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 	& svg:hover {
 		fill: var(--bg);
 	}
+}
+
+main > section > article.grid-container > div.portfolio-item, main > section > article.grid-container > div.stack-item, .solid-bg {
+	box-shadow: -1px 1px 2px hsl(0, 0%, 30%);
 }
 
 /* ----------Footer---------- */
