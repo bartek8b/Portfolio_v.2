@@ -179,7 +179,7 @@ nav > ul > li > a.active {
 }
 .menu-svg-container > svg {
 	height: calc(var(--space-base) * 3);
-	transition: opacity ease 0.3s;
+	transition: opacity ease 0.3s, fill ease 0.3s;
 }
 
 /* ----------Main---------- */
@@ -187,7 +187,6 @@ main {
 	border-top: 2px solid var(--primary);
 	border-bottom: 2px solid var(--primary);
 	border-radius: var(--space-base);
-	min-height: calc(100vh - calc(var(--space-base) * 12));
 	padding-top: 0;
 	/* padding-bottom: calc(var(--space-base) * 2); */
 	padding-inline: 0;
@@ -351,7 +350,7 @@ main > section > article.grid-container p {
 	text-align: center;
 	margin-inline: calc(var(--space-base) * 3);
 }
-main > section > article.grid-container > div.services-item ul {
+main > section > article ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -371,6 +370,13 @@ main > section > article.grid-container > div.services-item ul {
 		width: 15%;
 		height: auto;
 	}
+	& a {
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-base);
+	}
 }
 main > section > article #call-to-action-services {
 	min-width: calc(var(--space-base) * 12);
@@ -384,6 +390,34 @@ main > section > article div.call-to-contact {
 }
 main > section > article div.call-to-contact svg:hover,
 main > section > article div.services-item svg:hover {
+	fill: inherit;
+}
+/* Contact.html */
+main > section > article.constact-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: calc(var(--space-base) * 4);
+	& a {
+		display: inherit;
+		flex-direction: inherit;
+		align-items: inherit;
+		justify-content: inherit;
+		gap: calc(var(--space-base) * 1);
+		text-decoration: none;
+		fill: var(--font);
+		transition: fill ease 0.3s, color ease 0.3s;
+		color: inherit;
+	}
+	& a:hover {
+		color: var(--primary);
+		fill: var(--primary);
+	}
+}
+main > section > article.constact-container .contact-svg {
+	height: auto;
+	width: calc(var(--space-base) * 3);
 	fill: inherit;
 }
 /* ----------Footer---------- */
@@ -402,6 +436,10 @@ footer > a {
 	font-size: 0.8rem;
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
 	font-weight: lighter;
+	& svg{
+		height: auto;
+		width: calc(var(--space-base) * 2);
+	}
 }
 footer > img {
 	height: auto;
