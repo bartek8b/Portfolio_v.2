@@ -175,6 +175,7 @@
   color: var(--primaryColor);
   cursor: pointer;
   font-size: 16px;
+  box-shadow: none;
 }
 
 #silktide-banner .preferences span {
@@ -295,10 +296,13 @@
   cursor: pointer;
   background: var(--backgroundColor);
   color: var(--primaryColor);
+  box-shadow: none;
 }
 
 #silktide-modal .modal-close svg {
   fill: var(--primaryColor);
+  height: 16px;
+  width: auto;
 }
 
 /* --------------------------------
