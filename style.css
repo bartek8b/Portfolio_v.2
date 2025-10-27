@@ -107,6 +107,13 @@ h2 {
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
 	color: var(--primary);
 }
+main > section > article.grid-container > div.portfolio-item,
+main > section > article.grid-container > div.stack-item {
+	box-shadow: -1px 0px 2px #14050d;
+}
+p {
+	max-width: 70ch;
+}
 
 /* ----------Header---------- */
 header {
@@ -194,9 +201,7 @@ main > section.sub-container {
 main > section.sub-container.solid-bg {
 	background-color: var(--bg);
 }
-main > section.sub-container p {
-	max-width: 70ch;
-}
+
 /* ----------Main----------Duo container---------- */
 main > section > article.duo-container {
 	display: grid;
@@ -330,9 +335,8 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 		fill: var(--bg);
 	}
 }
-
-main > section > article.grid-container > div.portfolio-item, main > section > article.grid-container > div.stack-item, .solid-bg {
-	box-shadow: -1px 1px 2px hsl(0, 0%, 30%);
+main > section > article.grid-container.portfolio-container p {
+	text-align: center;
 }
 
 /* ----------Footer---------- */
