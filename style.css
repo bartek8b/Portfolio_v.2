@@ -42,7 +42,13 @@ body {
 /* General default display*/
 body,
 nav,
-main > section > article a.call-to-action-btn {
+main > section > article a.call-to-action-btn,
+main
+	> section
+	> article
+	> .portfolio-item
+	> div.portfolio-item-btns-container
+	> .portfolio-item-btn {
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
@@ -90,7 +96,7 @@ main > section > article a.call-to-action-btn {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: var(--space-base);
+	padding: calc(var(--space-base) / 2);
 	border-radius: calc(var(--space-base) * 2) calc(var(--space-base) / 2)
 		calc(var(--space-base) * 2) calc(var(--space-base) / 2);
 	box-shadow: var(--shadow);
@@ -298,13 +304,27 @@ main > section > article.grid-container > div.portfolio-item {
 }
 main > section > article > .portfolio-item > img {
 	max-width: 70%;
-	&#calculator{
+	&#calculator {
 		max-width: 50%;
 	}
-	&#carousel{
+	&#carousel {
 		max-width: 50%;
 	}
 }
+main > section > article > .portfolio-item > div.portfolio-item-btns-container {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
+main
+	> section
+	> article
+	> .portfolio-item
+	> div.portfolio-item-btns-container
+	> a.portfolio-item-btn {
+	min-width: calc(var(--space-base) * 8);
+}
+
 /* ----------Footer---------- */
 footer {
 	text-align: center;
@@ -334,7 +354,13 @@ footer > img {
 
 	body,
 	nav,
-	main > section > article a.call-to-action-btn {
+	main > section > article a.call-to-action-btn,
+	main
+		> section
+		> article
+		> .portfolio-item
+		> div.portfolio-item-btns-container
+		> .portfolio-item-btn {
 		background: url(assets/background/background_dark.webp) no-repeat top center;
 		background-size: cover;
 		background-attachment: fixed;
@@ -378,6 +404,6 @@ footer > img {
 		margin-top: var(--space-base);
 	}
 	main > section > article > .portfolio-item > img {
-	max-width: 50%;
-}
+		max-width: 50%;
+	}
 }
