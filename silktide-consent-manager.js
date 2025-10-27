@@ -273,7 +273,7 @@ class SilktideCookieBanner {
   getBannerContent() {
     const bannerDescription =
       this.config.text?.banner?.description ||
-      "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic.</p>";
+      "<p>Strona używa plików cookie do analizy ruchu. Twoje dane są anonimowe.</p>";
 
     // Accept button
     const acceptAllButtonText = this.config.text?.banner?.acceptAllButtonText || 'Accept all';
