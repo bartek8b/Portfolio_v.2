@@ -38,6 +38,7 @@ body {
 	background-color: var(--primary);
 	color: #e6e6e6;
 }
+
 /* General default display*/
 body,
 nav,
@@ -84,7 +85,6 @@ h2 {
 }
 main > section > article a.call-to-action-btn {
 	color: var(--font);
-	min-width: calc(var(--space-base) * 12);
 	align-self: center;
 	text-decoration: none;
 	display: flex;
@@ -102,6 +102,7 @@ main > section > article a.call-to-action-btn:hover {
 		var(--space-base);
 	color: var(--primary);
 }
+
 /* ----------Header---------- */
 header {
 	display: flex;
@@ -122,6 +123,7 @@ img.logo-header {
 	width: auto;
 	filter: invert(30%);
 }
+
 /* ----------nav---------- */
 nav {
 	display: flex;
@@ -197,8 +199,7 @@ main > section > article.duo-container {
 	grid-template-columns: 2fr 1fr;
 }
 main > section > article .hero-logo {
-	width: 100%;
-	height: auto;
+	max-width: calc(var(--space-base) * 10);
 	filter: invert(30%);
 	align-self: center;
 }
@@ -207,7 +208,11 @@ main > section > article.duo-container > .duo-right {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: calc(var(--space-base) * 3);
+	gap: calc(var(--space-base) * 2);
+}
+main > section > article #call-to-action-portfolio {
+	margin-bottom: calc(var(--space-base) * 2);
+	min-width: calc(var(--space-base) * 10);
 }
 /* ----------Main----------grid container---------- */
 main > section > article.grid-container {
@@ -216,25 +221,7 @@ main > section > article.grid-container {
 	grid-auto-rows: 1fr;
 	margin-top: var(--space-base);
 }
-/* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
-main > section > article.grid-container.tech-stack-container {
-	grid-template-columns: repeat(
-		auto-fit,
-		minmax(calc(var(--space-base) * 10), 1fr)
-	);
-}
-main > section > article.grid-container > .stack-item {
-	background-color: var(--bg);
-	border-radius: calc(var(--space-base) / 1);
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-base);
-	justify-content: space-between;
-	align-items: center;
-	padding-bottom: calc(var(--space-base) * 3);
-	
-}
-main > section > article.grid-container > .stack-item > h2 {
+main > section > article.grid-container h2 {
 	border-radius: var(--space-base) var(--space-base) 0 0;
 	width: 100%;
 	text-align: center;
@@ -242,6 +229,28 @@ main > section > article.grid-container > .stack-item > h2 {
 	background-color: var(--primary);
 	color: #e6e6e6;
 	padding: calc(var(--space-base) / 2);
+	overflow: hidden;
+}
+main > section > article.grid-container > div {
+	background-color: var(--bg);
+	border-radius: calc(var(--space-base) / 1);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: calc(var(--space-base) * 3);
+}
+/* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
+
+/* .tech-stack-container */
+main > section > article.grid-container.tech-stack-container {
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(calc(var(--space-base) * 10), 1fr)
+	);
+}
+main > section > article.grid-container > div.stack-item {
+	gap: var(--space-base);
 }
 main > section > article.grid-container > .stack-item > svg {
 	width: 60%;
@@ -275,6 +284,25 @@ main > section > article.grid-container > .stack-item > svg:hover {
 	}
 	&#gimp {
 		fill: #8c8073;
+	}
+}
+/* .portfolio-container */
+main > section > article.grid-container.portfolio-container {
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(calc(var(--space-base) * 16), 1fr)
+	);
+}
+main > section > article.grid-container > div.portfolio-item {
+	gap: calc(var(--space-base) * 3);
+}
+main > section > article > .portfolio-item > img {
+	max-width: 70%;
+	&#calculator{
+		max-width: 50%;
+	}
+	&#carousel{
+		max-width: 50%;
 	}
 }
 /* ----------Footer---------- */
@@ -349,4 +377,7 @@ footer > img {
 	main > section > article a.call-to-action-btn {
 		margin-top: var(--space-base);
 	}
+	main > section > article > .portfolio-item > img {
+	max-width: 50%;
+}
 }
