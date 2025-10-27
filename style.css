@@ -218,6 +218,7 @@ main > section > article.duo-container > .duo-right {
 main > section > article #call-to-action-portfolio {
 	margin-bottom: calc(var(--space-base) * 2);
 	min-width: calc(var(--space-base) * 10);
+	text-align: center;
 }
 /* ----------Main----------grid container---------- */
 main > section > article.grid-container {
