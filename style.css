@@ -83,6 +83,9 @@ svg {
 svg:hover {
 	fill: var(--primary);
 }
+a.call-to-action-btn > svg:hover {
+	fill: inherit;
+}
 h2 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
@@ -106,7 +109,6 @@ main > section > article a.call-to-action-btn:hover {
 	box-shadow: var(--shadow-big);
 	border-radius: var(--space-base) var(--space-base) var(--space-base)
 		var(--space-base);
-	color: var(--primary);
 }
 
 /* ----------Header---------- */
@@ -313,7 +315,8 @@ main > section > article > .portfolio-item > img {
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
+	gap: calc(var(--space-base) * 2);
 	width: 100%;
 }
 main
@@ -322,8 +325,15 @@ main
 	> .portfolio-item
 	> div.portfolio-item-btns-container
 	> a.portfolio-item-btn {
-	min-width: calc(var(--space-base) * 8);
+	min-width: calc(var(--space-base) * 6);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	&svg:hover{
+		fill: var(--font);}
 }
+
 
 /* ----------Footer---------- */
 footer {
