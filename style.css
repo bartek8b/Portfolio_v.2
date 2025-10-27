@@ -306,7 +306,7 @@ main > section > article.grid-container.portfolio-container,
 main > section > article.grid-container.services-container {
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 16), 1fr)
+		minmax(calc(var(--space-base) * 20), 1fr)
 	);
 }
 main > section > article.grid-container > div.portfolio-item,
@@ -381,6 +381,10 @@ main > section > article div.call-to-contact {
 	align-items: center;
 	justify-content: center;
 	gap: calc(var(--space-base) * 2);
+}
+main > section > article div.call-to-contact svg:hover,
+main > section > article div.services-item svg:hover {
+	fill: inherit;
 }
 /* ----------Footer---------- */
 footer {
