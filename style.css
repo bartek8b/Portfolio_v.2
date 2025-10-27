@@ -41,17 +41,31 @@ body {
 
 /* General default display*/
 body,
-nav,
-main > section > article a.call-to-action-btn,
-main
-	> section
-	> article
-	> .portfolio-item
-	> div.portfolio-item-btns-container
-	> .portfolio-item-btn {
+nav {
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
+}
+main > section > article a.call-to-action-btn {
+	align-self: center;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: calc(var(--space-base) / 2);
+	border-radius: calc(var(--space-base) * 2) calc(var(--space-base) / 2)
+		calc(var(--space-base) * 2) calc(var(--space-base) / 2);
+	box-shadow: var(--shadow);
+	transition: border-radius ease 0.3s, box-shadow ease 0.3s, opacity 0.3s ease;
+	background-color: var(--font);
+	color: var(--bg);
+	opacity: 0.8;
+}
+main > section > article a.call-to-action-btn:hover {
+	box-shadow: var(--shadow-big);
+	border-radius: var(--space-base) var(--space-base) var(--space-base)
+		var(--space-base);
+	opacity: 1;
 }
 a:visited {
 	color: inherit;
@@ -91,24 +105,6 @@ h2 {
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
 	color: var(--primary);
-}
-main > section > article a.call-to-action-btn {
-	color: var(--font);
-	align-self: center;
-	text-decoration: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: calc(var(--space-base) / 2);
-	border-radius: calc(var(--space-base) * 2) calc(var(--space-base) / 2)
-		calc(var(--space-base) * 2) calc(var(--space-base) / 2);
-	box-shadow: var(--shadow);
-	transition: border-radius ease 0.3s, box-shadow ease 0.3s;
-}
-main > section > article a.call-to-action-btn:hover {
-	box-shadow: var(--shadow-big);
-	border-radius: var(--space-base) var(--space-base) var(--space-base)
-		var(--space-base);
 }
 
 /* ----------Header---------- */
@@ -319,21 +315,19 @@ main > section > article > .portfolio-item > div.portfolio-item-btns-container {
 	gap: calc(var(--space-base) * 2);
 	width: 100%;
 }
-main
-	> section
-	> article
-	> .portfolio-item
-	> div.portfolio-item-btns-container
-	> a.portfolio-item-btn {
+main > section > article a.call-to-action-btn.portfolio-item-btn {
 	min-width: calc(var(--space-base) * 6);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	&svg:hover{
-		fill: var(--font);}
+	& svg {
+		fill: var(--bg);
+	}
+	& svg:hover {
+		fill: var(--bg);
+	}
 }
-
 
 /* ----------Footer---------- */
 footer {
@@ -363,14 +357,7 @@ footer > img {
 	--font: #cccccc;
 
 	body,
-	nav,
-	main > section > article a.call-to-action-btn,
-	main
-		> section
-		> article
-		> .portfolio-item
-		> div.portfolio-item-btns-container
-		> .portfolio-item-btn {
+	nav {
 		background: url(assets/background/background_dark.webp) no-repeat top center;
 		background-size: cover;
 		background-attachment: fixed;
