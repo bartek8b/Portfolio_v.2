@@ -206,7 +206,8 @@ main > section > article.duo-container > .duo-left,
 main > section > article.duo-container > .duo-right {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: center;
+	gap: calc(var(--space-base) * 3);
 }
 /* ----------Main----------grid container---------- */
 main > section > article.grid-container {
