@@ -101,7 +101,8 @@ svg:hover {
 a.call-to-action-btn > svg:hover {
 	fill: inherit;
 }
-h1 {
+h1,
+h2 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
@@ -234,7 +235,7 @@ main > section > article.grid-container {
 	grid-auto-rows: 1fr;
 	margin-top: var(--space-base);
 }
-main > section > article.grid-container h1 {
+main > section > article.grid-container h2 {
 	border-radius: var(--space-base) var(--space-base) 0 0;
 	width: 100%;
 	text-align: center;
