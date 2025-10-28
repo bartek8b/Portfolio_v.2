@@ -230,7 +230,6 @@ main > section > article #call-to-action-portfolio {
 }
 /* ----------Main----------grid container---------- */
 main > section > article.grid-container {
-	gap: calc(var(--space-base) * 2);
 	display: grid;
 	grid-auto-rows: 1fr;
 	margin-top: var(--space-base);
@@ -258,6 +257,7 @@ main > section > article.grid-container > div {
 
 /* .tech-stack-container */
 main > section > article.grid-container.tech-stack-container {
+	gap: calc(var(--space-base) * 2);
 	grid-template-columns: repeat(
 		auto-fit,
 		minmax(calc(var(--space-base) * 10), 1fr)
@@ -303,14 +303,15 @@ main > section > article.grid-container > .stack-item > svg:hover {
 /* .portfolio-container & services-container */
 main > section > article.grid-container.portfolio-container,
 main > section > article.grid-container.services-container {
+	gap: calc(var(--space-base) * 4);
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 20), 1fr)
+		minmax(calc(var(--space-base) * 16), 1fr)
 	);
 }
 main > section > article.grid-container > div.portfolio-item,
 main > section > article.grid-container > div.services-item {
-	gap: calc(var(--space-base) * 3);
+	gap: calc(var(--space-base) * 2);
 }
 main > section > article > .portfolio-item > img {
 	opacity: 0.7;
@@ -399,6 +400,7 @@ main > section > article.contact-container {
 	align-items: center;
 	justify-content: center;
 	gap: calc(var(--space-base) * 4);
+	min-height: 50vh;
 	& a {
 		display: inherit;
 		flex-direction: inherit;
