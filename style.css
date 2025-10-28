@@ -306,7 +306,7 @@ main > section > article.grid-container.services-container {
 	gap: calc(var(--space-base) * 4);
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 16), 1fr)
+		minmax(calc(var(--space-base) * 15), 1fr)
 	);
 }
 main > section > article.grid-container > div.portfolio-item,
