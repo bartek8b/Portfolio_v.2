@@ -37,22 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	colorSchemeBtn.addEventListener('click', toggleTheme);
 });
 
-// Nav hide / show
-
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-	let nav = document.querySelector('nav');
-	let scrollToTop = window.pageYOffset || document.documentElement.scrollTop;
-
-	if (scrollToTop > lastScrollTop) {
-		nav.style.top = '-100%';
-	} else {
-		nav.style.top = '0';
-	}
-	lastScrollTop = scrollToTop;
-});
-
 // Intersection Observer
 
 const headings = document.querySelectorAll('.sub-container > h2');

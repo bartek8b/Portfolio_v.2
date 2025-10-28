@@ -150,7 +150,6 @@ nav {
 		calc(var(--space-base) * 4);
 	transition: box-shadow ease 0.3s;
 	z-index: 999;
-	transition: top ease 0.6s;
 }
 nav:hover {
 	box-shadow: var(--shadow);
