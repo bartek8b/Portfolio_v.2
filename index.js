@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Intersection Observer
 
-const headings = document.querySelectorAll('.sub-container > h2');
+const headings = document.querySelectorAll('.sub-container > h1');
 const articles = document.querySelectorAll('article > *, .contact-container');
 
 const observer = new IntersectionObserver(
