@@ -47,13 +47,12 @@ const observer = new IntersectionObserver(
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				entry.target.classList.add('show');
-				console.log(entry.target);
 				observer.unobserve(entry.target);
 			}
 		});
 	},
 	{
-		rootMargin: '0px 0px 50px 0px',
+		rootMargin: '0px 0px 0px 0px',
 	}
 );
 
