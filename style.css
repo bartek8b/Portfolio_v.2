@@ -106,7 +106,6 @@ h2 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
-	color: var(--primary);
 }
 main > section > article.grid-container > div.portfolio-item,
 main > section > article.grid-container > div.stack-item,
@@ -456,6 +455,7 @@ footer > img {
 	opacity: 0;
 	transform: translateY(-40%);
 	transition: opacity 0.6s ease, transform 0.6s ease;
+	color: var(--font);
 }
 .contact-container,
 section > article > * {
