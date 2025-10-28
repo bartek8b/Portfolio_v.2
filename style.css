@@ -194,7 +194,8 @@ main {
 main > section.sub-container {
 	display: flex;
 	flex-direction: column;
-	padding: calc(var(--space-base) * 4);
+	padding-inline: calc(var(--space-base) * 2);
+	padding-block: calc(var(--space-base) * 3);
 	border-radius: calc(var(--space-base));
 }
 main > section.sub-container:not(:last-of-type) {
@@ -304,7 +305,7 @@ main > section > article.grid-container.portfolio-container,
 main > section > article.grid-container.services-container {
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 22), 1fr)
+		minmax(calc(var(--space-base) * 20), 1fr)
 	);
 }
 main > section > article.grid-container > div.portfolio-item,
