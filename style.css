@@ -101,7 +101,7 @@ svg:hover {
 a.call-to-action-btn > svg:hover {
 	fill: inherit;
 }
-h2 {
+h1 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
@@ -234,7 +234,7 @@ main > section > article.grid-container {
 	grid-auto-rows: 1fr;
 	margin-top: var(--space-base);
 }
-main > section > article.grid-container h2 {
+main > section > article.grid-container h1 {
 	border-radius: var(--space-base) var(--space-base) 0 0;
 	width: 100%;
 	text-align: center;
@@ -450,7 +450,7 @@ footer > img {
 	opacity: 0.7;
 }
 
-.sub-container > h2 {
+.sub-container > h1 {
 	opacity: 0;
 	transform: translateY(-40%);
 	transition: opacity 0.6s ease, transform 0.6s ease;
@@ -461,7 +461,7 @@ section > article > * {
 	transform: translateY(20%);
 	transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.sub-container > h2.show,
+.sub-container > h1.show,
 section > article > *.show,
 .contact-container.show {
 	opacity: 1;
