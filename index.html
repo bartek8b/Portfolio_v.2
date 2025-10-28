@@ -1,102 +1,101 @@
 <!DOCTYPE html>
 <html lang="pl">
 
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ustaw meta description dla każdej podstrony -->
+    <meta name="description" content="8b.com.pl Bartłomiej Balcerzak - strony internetowe, web development">
+    <!-- Ustaw Open Graph Protocol (OGP) -->
+    <meta property="og:title" content="8b.com.pl" />
+    <meta property="og:description" content="Web development" />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/bartek8b/Portfolio_v.2/main/assets/background/ogp_image.webp" />
+    <meta property="og:url" content="https://8b.com.pl" />
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="modern-normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css">
+    <!-- Ustaw odpowiednie skrypty dla podstron -->
+    <script src="index.js" defer></script>
+    <script src="silktide-consent-manager.js"></script>
+    <script>
+        silktideCookieBannerManager.updateCookieBannerConfig({
+            background: {
+                showBackground: false
+            },
+            cookieIcon: {
+                position: "bottomLeft"
+            },
+            cookieTypes: [
+                {
+                    id: "google_analytics_4",
+                    name: "Google Analytics 4",
+                    description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
+                    required: false,
+                    onAccept: function () {
+                        // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { dataLayer.push(arguments); }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Ustaw meta description dla każdej podstrony -->
-        <meta name="description" content="8b.com.pl Bartłomiej Balcerzak - strony internetowe, web development">
-        <!-- Ustaw Open Graph Protocol (OGP) -->
-        <meta property="og:title" content="Pulmo" />
-        <meta property="og:description" content="Przychodnia | Rehabilitacja | Hipoterapia" />
-        <meta property="og:image"
-            content="https://raw.githubusercontent.com/bartek8b/NZOZ-Pulmo/main/assets/background/ogp_image.jpg" />
-        <meta property="og:url" content="https://pulmo.com.pl" />
-        <link rel="stylesheet" href="modern-normalize.min.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css">
-        <!-- Ustaw odpowiednie skrypty dla podstron -->
-        <script src="index.js" defer></script>
-        <script src="silktide-consent-manager.js"></script>
-        <script>
-            silktideCookieBannerManager.updateCookieBannerConfig({
-                background: {
-                    showBackground: false
-                },
-                cookieIcon: {
-                    position: "bottomLeft"
-                },
-                cookieTypes: [
-                    {
-                        id: "google_analytics_4",
-                        name: "Google Analytics 4",
-                        description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
-                        required: false,
-                        onAccept: function () {
-                            // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag() { dataLayer.push(arguments); }
+                        const script = document.createElement('script');
+                        script.async = true;
+                        script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
+                        script.onerror = function () {
+                            console.error("Nie udało się załadować Google Analytics.");
+                        };
+                        document.head.appendChild(script);
 
-                            const script = document.createElement('script');
-                            script.async = true;
-                            script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
-                            script.onerror = function () {
-                                console.error("Nie udało się załadować Google Analytics.");
-                            };
-                            document.head.appendChild(script);
-
-                            script.onload = function () {
-                                gtag('js', new Date());
-                                gtag('config', 'G-5KSZFXCY2B');
-                                gtag('consent', 'update', {
-                                    analytics_storage: 'granted',
-                                });
-                                dataLayer.push({
-                                    'event': 'consent_accepted_anonimowa_analiza_ruchu',
-                                });
-                            };
-                        },
-                        onReject: function () {
-                            // Aktualizacja zgody na przechowywanie danych analitycznych
-                            if (typeof gtag === "function") {
-                                gtag('consent', 'update', {
-                                    analytics_storage: 'denied',
-                                });
-                            } else {
-                                console.warn("Google Analytics nie zostało zainicjalizowane.");
-                            }
+                        script.onload = function () {
+                            gtag('js', new Date());
+                            gtag('config', 'G-5KSZFXCY2B');
+                            gtag('consent', 'update', {
+                                analytics_storage: 'granted',
+                            });
+                            dataLayer.push({
+                                'event': 'consent_accepted_anonimowa_analiza_ruchu',
+                            });
+                        };
+                    },
+                    onReject: function () {
+                        // Aktualizacja zgody na przechowywanie danych analitycznych
+                        if (typeof gtag === "function") {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'denied',
+                            });
+                        } else {
+                            console.warn("Google Analytics nie zostało zainicjalizowane.");
                         }
                     }
-                ],
-                text: {
-                    banner: {
-                        description: "",
-                        acceptAllButtonText: "Akceptuj",
-                        acceptAllButtonAccessibleLabel: "Zgoda na pliki cookie",
-                        rejectNonEssentialButtonText: "Odmowa",
-                        rejectNonEssentialButtonAccessibleLabel: "Nie zgadzaj się na pliki cookie",
-                        preferencesButtonText: "Preferences",
-                        preferencesButtonAccessibleLabel: "Toggle preferences"
-                    },
-                    preferences: {
-                        title: "Preferencje plików cookie",
-                        description: "<p><a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">Jak Google wykorzystuje dane gromadzone podczas korzystania z witryn i aplikacji</a><br></p>",
-                        creditLinkText: "Siltkide",
-                        creditLinkAccessibleLabel: "Get this banner for free"
-                    }
-                },
-                position: {
-                    banner: "bottomCenter"
                 }
-            });
-        </script>
-        <!-- Ustaw favicon -->
-        <link rel="icon" type="image/webp" href="assets/logo/logo.webp">
-        <!-- Ustaw tytuł dla każdej podstrony -->
-        <title>8b 2.0</title>
-    </head>
+            ],
+            text: {
+                banner: {
+                    description: "",
+                    acceptAllButtonText: "Akceptuj",
+                    acceptAllButtonAccessibleLabel: "Zgoda na pliki cookie",
+                    rejectNonEssentialButtonText: "Odmowa",
+                    rejectNonEssentialButtonAccessibleLabel: "Nie zgadzaj się na pliki cookie",
+                    preferencesButtonText: "Preferences",
+                    preferencesButtonAccessibleLabel: "Toggle preferences"
+                },
+                preferences: {
+                    title: "Preferencje plików cookie",
+                    description: "<p><a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">Jak Google wykorzystuje dane gromadzone podczas korzystania z witryn i aplikacji</a><br></p>",
+                    creditLinkText: "Siltkide",
+                    creditLinkAccessibleLabel: "Get this banner for free"
+                }
+            },
+            position: {
+                banner: "bottomCenter"
+            }
+        });
+    </script>
+    <!-- Ustaw favicon -->
+    <link rel="icon" type="image/webp" href="assets/logo/logo.webp">
+    <!-- Ustaw tytuł dla każdej podstrony -->
+    <title>8b.com.pl</title>
 </head>
 
 <body>
