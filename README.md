@@ -1,4 +1,4 @@
-###Credit
+### Credit
 
 This website uses [Silktide Consent Manager](https://silktide.com/consent-manager/) for cookie management.  
 According to Silktide's license, commercial use is permitted only if the credit link remains visible and clearly refers to Silktide Consent Manager.
