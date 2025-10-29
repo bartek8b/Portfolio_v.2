@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const headings = document.querySelectorAll('.sub-container > h1');
 const articles = document.querySelectorAll('article > *, .contact-container');
-const nav = document.querySelector('nav > ul');
 
 const header = document.querySelector('.site-header');
 
@@ -85,6 +84,5 @@ const constantObserver = new IntersectionObserver(
 
 headings.forEach(elem => oneTimeObserver.observe(elem));
 articles.forEach(elem => oneTimeObserver.observe(elem));
-oneTimeObserver.observe(nav);
 
 constantObserver.observe(header);
