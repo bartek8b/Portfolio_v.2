@@ -52,7 +52,7 @@ const headings = document.querySelectorAll('.sub-container > h1');
 const articles = document.querySelectorAll('article > *, .contact-container');
 const nav = document.querySelector('nav > ul');
 
-const header = document.querySelector('header');
+const header = document.querySelector('.site-header');
 const footer = document.querySelector('footer');
 
 const oneTimeObserver = new IntersectionObserver(
