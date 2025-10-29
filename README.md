@@ -2,4 +2,4 @@
 
 This website uses [Silktide Consent Manager](https://silktide.com/consent-manager/) for cookie management.  
 
-[Gitgub repo](https://github.com/silktide/consent-manager)
+[Github repo](https://github.com/silktide/consent-manager)
