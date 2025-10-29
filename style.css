@@ -24,7 +24,7 @@ body {
 :root {
 	--space-base: 1rem;
 
-	--primary: hsl(328, 59%, 20%);
+	--primary: #511535;
 
 	--bg: #e6e6e6;
 	--font: #333333;
@@ -42,9 +42,11 @@ body {
 /* General default display*/
 body,
 nav {
+	background-color: var(--bg);
 	background: url(assets/background/background_light.webp) no-repeat top center;
 	background-size: cover;
 	background-attachment: fixed;
+	transition: background 0.6s ease;
 }
 main > section > article a.call-to-action-btn {
 	align-self: center;
@@ -203,6 +205,7 @@ main > section.sub-container:not(:last-of-type) {
 }
 main > section.sub-container.solid-bg {
 	background-color: var(--bg);
+	transition: background-color 0.3s ease;
 }
 
 /* ----------Main----------Duo container---------- */
@@ -270,6 +273,7 @@ main > section > article.grid-container > .stack-item > svg {
 	width: 50%;
 	height: auto;
 	transition: fill ease 0.3s;
+	margin-top: calc(var(--space-base) / 2);
 }
 main > section > article.grid-container > .stack-item > svg:hover {
 	&#html {
