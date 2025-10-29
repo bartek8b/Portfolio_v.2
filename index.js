@@ -1,10 +1,5 @@
 // Dark / light theme
 
-const lightIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z" /></svg>`;
-
-const darkIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2C9.76,2 7.78,3.05 6.5,4.68L16.31,14.5C17.94,13.21 19,11.24 19,9A7,7 0 0,0 12,2M3.28,4L2,5.27L5.04,8.3C5,8.53 5,8.76 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H14.73L18.73,22L20,20.72L3.28,4M9,20V21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9Z" /></svg>`;
-
-const colorSchemeBtn = document.querySelector('.dark-light-btn');
 let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
 function applyTheme(isThemeDark) {
@@ -12,27 +7,42 @@ function applyTheme(isThemeDark) {
 	document.documentElement.setAttribute(
 		'data-theme',
 		isThemeDark ? 'dark' : 'light'
+		// NOTE: do NOT mutate button.innerHTML here — icons are embedded in HTML and toggled via CSS.
 	);
-	if (isDark) {
-		colorSchemeBtn.innerHTML = darkIcon;
-	} else {
-		colorSchemeBtn.innerHTML = lightIcon;
-	}
 }
 
 function toggleTheme() {
 	isDark = !isDark;
 	applyTheme(isDark);
-	localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	try {
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	} catch (e) {
+		// if localStorage is unavailable
+		console.warn('Nie udało się zapisać preferencji motywu:', e);
+	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	const colorSchemeBtn = document.querySelector('.dark-light-btn');
 	// synchronizuj UI z atrybutem ustawionym wcześniej
-	applyTheme(isDark);
 
-	// podłącz przycisk (jeśli istnieje)
 	if (colorSchemeBtn) {
-		colorSchemeBtn.addEventListener('click', toggleTheme);
+		// Ustaw aria-pressed / aria-label według obecnego stanu
+		colorSchemeBtn.setAttribute('aria-pressed', String(isDark));
+		colorSchemeBtn.setAttribute(
+			'aria-label',
+			isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny'
+		);
+
+		colorSchemeBtn.addEventListener('click', () => {
+			toggleTheme();
+			// Zaktualizuj aria po przełączeniu
+			colorSchemeBtn.setAttribute('aria-pressed', String(isDark));
+			colorSchemeBtn.setAttribute(
+				'aria-label',
+				isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny'
+			);
+		});
 	}
 });
 
@@ -40,13 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const headings = document.querySelectorAll('.sub-container > h1');
 const articles = document.querySelectorAll('article > *, .contact-container');
+const nav = document.querySelector('nav > ul');
 
-const observer = new IntersectionObserver(
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+
+const oneTimeObserver = new IntersectionObserver(
 	entries => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				entry.target.classList.add('show');
-				observer.unobserve(entry.target);
+				oneTimeObserver.unobserve(entry.target);
 			}
 		});
 	},
@@ -55,5 +69,24 @@ const observer = new IntersectionObserver(
 	}
 );
 
-headings.forEach(elem => observer.observe(elem));
-articles.forEach(elem => observer.observe(elem));
+const constantObserver = new IntersectionObserver(
+	entries => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('show');
+			} else {
+				entry.target.classList.remove('show');
+			}
+		});
+	},
+	{
+		rootMargin: '0px 0px 0px 0px',
+	}
+);
+
+headings.forEach(elem => oneTimeObserver.observe(elem));
+articles.forEach(elem => oneTimeObserver.observe(elem));
+oneTimeObserver.observe(nav);
+
+constantObserver.observe(header);
+constantObserver.observe(footer);
