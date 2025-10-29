@@ -53,7 +53,6 @@ const articles = document.querySelectorAll('article > *, .contact-container');
 const nav = document.querySelector('nav > ul');
 
 const header = document.querySelector('.site-header');
-const footer = document.querySelector('.site-footer');
 
 const oneTimeObserver = new IntersectionObserver(
 	entries => {
@@ -89,4 +88,3 @@ articles.forEach(elem => oneTimeObserver.observe(elem));
 oneTimeObserver.observe(nav);
 
 constantObserver.observe(header);
-constantObserver.observe(footer);

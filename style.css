@@ -471,8 +471,7 @@ footer > img {
 	transform: translateY(-30%);
 	transition: opacity 0.6s ease, transform 0.6s ease;
 }
-nav > ul,
-.site-footer {
+nav > ul {
 	opacity: 0;
 	transform: scale(0.8);
 	transition: opacity 0.6s ease, transform 0.6s ease;
@@ -491,7 +490,6 @@ section > article > * {
 .sub-container > h1.show,
 section > article > *.show,
 .contact-container.show,
-.site-footer.show,
 .site-header.show,
 nav > ul.show {
 	opacity: 1;
