@@ -119,6 +119,17 @@ p {
 	max-width: 70ch;
 }
 
+/* Dark / light btn */
+button.dark-light-btn {
+	border: none;
+	box-shadow: none;
+}
+.dark-light-btn .icon > svg {
+	display: none;
+	width: calc(var(--space-base) * 2);
+	height: auto;
+}
+
 /* ----------Header---------- */
 header {
 	display: flex;
@@ -476,9 +487,16 @@ section > article > *.show,
 }
 
 /* Theme dark */
+[data-theme='light'] .dark-light-btn .icon-light > svg {
+	display: block;
+}
 [data-theme='dark'] {
 	--bg: #14050d;
 	--font: #cccccc;
+
+	.dark-light-btn .icon-dark > svg {
+		display: block;
+	}
 
 	body,
 	nav {
