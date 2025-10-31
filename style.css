@@ -45,7 +45,11 @@ body {
 body,
 nav {
 	background-color: var(--bg-body);
-	transition: background-color 0.6s ease;
+	background: url(assets/background/background_light.webp)
+		center center no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	transition: background-color 0.6s ease, background 0.6s ease;
 }
 main > section > article a.call-to-action-btn {
 	align-self: center;
@@ -504,6 +508,16 @@ section > article > *.show,
 	--bg: #050915;
 	--bg-body: #080e21;
 	--font: hsl(0, 20%, 95%);
+
+	body,
+	nav {
+		background-color: var(--bg-body);
+		background: url(assets/background/background_dark.webp)
+			center center no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		transition: background-color 0.6s ease, background 0.6s ease;
+	}
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
