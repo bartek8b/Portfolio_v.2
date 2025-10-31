@@ -26,7 +26,8 @@ body {
 
 	/* --primary: hsl(227, 95%, 25%); */
 	--primary: hsl(215, 95%, 25%);
-	--secondary: #30d5c7;
+	/* --secondary: hsl(175, 66%, 51%); */
+	--secondary: hsl(170, 66%, 51%);
 
 	--light-always: #f5f0f0;
 	--dark-always: #080e21;
