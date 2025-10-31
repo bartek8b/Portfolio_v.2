@@ -24,7 +24,7 @@ body {
 :root {
 	--space-base: 1rem;
 
-	--primary: #031a6d;
+	--primary: hsl(227, 95%, 30%);
 	--secondary: #30d5c7;
 
 	--light-always: #f5f0f0;
