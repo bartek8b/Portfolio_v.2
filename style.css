@@ -24,15 +24,15 @@ body {
 :root {
 	--space-base: 1rem;
 
-	--primary: #031a6b;
-	--secondary: #30d5c8;
+	--primary: hsl(227, 95%, 22%);
+	--secondary: hsl(175, 66%, 51%);
 
-	--light-always: #faebeb;
-	--dark-always: #050915;
+	--light-always: hsl(0, 20%, 95%);
+	--dark-always: hsl(225, 62%, 8%);
 
-	--bg: #fdf7f7;
-	--bg-body: #faebeb;
-	--font: #050915;
+	--bg: hsl(0, 20%, 95%);
+	--bg-body: hsl(0, 20%, 98%);
+	--font: hsl(225, 62%, 5%);
 
 	--shadow: inset 0 1px 2px var(--light-always), 0 1px 2px var(--bg),
 		0 1px 2px var(--secondary);
@@ -45,11 +45,7 @@ body {
 body,
 nav {
 	background-color: var(--bg);
-	background: linear-gradient(
-			to top right,
-			var(--primary) 0%,
-			transparent 15%
-		),
+	background: linear-gradient(to top right, var(--primary) 0%, transparent 15%),
 		linear-gradient(to top left, var(--primary) 0%, transparent 15%),
 		linear-gradient(to top, var(--bg-body) 0%, var(--bg-body) 100%);
 	background-size: cover;
@@ -101,9 +97,9 @@ svg {
 	width: auto;
 	fill: var(--font);
 }
-.silktide-logo svg{
-		fill: var(--primary);
-	}
+.silktide-logo svg {
+	fill: var(--primary);
+}
 svg:hover {
 	fill: var(--secondary);
 }
@@ -509,9 +505,9 @@ section > article > *.show,
 	display: block;
 }
 [data-theme='dark'] {
-	--bg: #080e21;
-	--bg-body: #050915;
-	--font: #faebeb;
+	--bg: hsl(226, 61%, 5%);
+	--bg-body: hsl(225, 62%, 8%);
+	--font: hsl(0, 20%, 95%);
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
