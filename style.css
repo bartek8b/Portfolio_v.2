@@ -86,7 +86,6 @@ button {
 	cursor: pointer;
 	box-shadow: var(--shadow);
 	background-color: transparent;
-	fill: var(--font);
 	opacity: 0.7;
 	transition: opacity ease 0.6s, box-shadow ease 0.6s;
 }
@@ -177,11 +176,12 @@ nav > ul > li {
 nav > ul > li > a {
 	opacity: 0.7;
 }
-nav > ul > li > a:hover {
-	opacity: 1;
-}
 nav > ul > li > a.active {
 	opacity: 1;
+	fill: var(--primary);
+	& svg{
+		fill: inherit;
+	}
 }
 .menu-svg-container > svg {
 	height: calc(var(--space-base) * 3);
