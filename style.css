@@ -44,8 +44,7 @@ body {
 body,
 nav {
 	background-color: var(--bg-body);
-	background: url(assets/background/background_light.webp)
-		top center no-repeat;
+	background: url(assets/background/background_light.webp) top center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	transition: background-color 0.6s ease, background 0.6s ease;
@@ -347,8 +346,21 @@ main > section > article > .portfolio-item > img {
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
 	display: flex;
 	justify-content: center;
-	gap: calc(var(--space-base) * 1);
+	gap: var(--space-base);
 	width: 100%;
+}
+main > section > article > .portfolio-item > div.tools-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc(var(--space-base) * 2);
+	justify-content: center;
+	align-items: center;
+	padding-inline: calc(var(--space-base) * 2);
+	& svg {
+		width: calc(var(--space-base) * 2);
+		height: auto;
+		fill: var(--font);
+	}
 }
 main > section > article a.call-to-action-btn.portfolio-item-btn {
 	min-width: calc(var(--space-base) * 6);
@@ -510,8 +522,7 @@ section > article > *.show,
 	body,
 	nav {
 		background-color: var(--bg-body);
-		background: url(assets/background/background_dark.webp)
-			top center no-repeat;
+		background: url(assets/background/background_dark.webp) top center no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
 		transition: background-color 0.6s ease, background 0.6s ease;
