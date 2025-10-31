@@ -31,7 +31,6 @@ body {
 	--dark-always: #080e21;
 
 	--bg: #f5f0f0;
-	--bg-body: #fbf9f9;
 	--font: #050915;
 
 	--shadow: inset 0 1px 2px var(--light-always), 0 1px 2px var(--bg),
@@ -46,7 +45,7 @@ body,
 nav {
 	background-color: var(--bg-body);
 	background: url(assets/background/background_light.webp)
-		center center no-repeat;
+		top center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	transition: background-color 0.6s ease, background 0.6s ease;
@@ -506,14 +505,13 @@ section > article > *.show,
 }
 [data-theme='dark'] {
 	--bg: #050915;
-	--bg-body: #080e21;
-	--font: hsl(0, 20%, 95%);
+	--font: #f5f0f0;
 
 	body,
 	nav {
 		background-color: var(--bg-body);
 		background: url(assets/background/background_dark.webp)
-			center center no-repeat;
+			top center no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
 		transition: background-color 0.6s ease, background 0.6s ease;
