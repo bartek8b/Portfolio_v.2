@@ -179,7 +179,7 @@ nav > ul > li > a {
 nav > ul > li > a.active {
 	opacity: 1;
 	fill: var(--primary);
-	& svg{
+	& svg {
 		fill: inherit;
 	}
 }
@@ -342,7 +342,7 @@ main > section > article > .portfolio-item > img {
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
 	display: flex;
 	justify-content: center;
-	gap: calc(var(--space-base) * 2);
+	gap: calc(var(--space-base) * 1);
 	width: 100%;
 }
 main > section > article a.call-to-action-btn.portfolio-item-btn {
@@ -351,12 +351,15 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	border-radius: calc(var(--space-base) / 2);
 	color: var(--light-always);
+	background-color: var(--primary);
 	& svg {
 		fill: var(--light-always);
 	}
-	& svg:hover {
-		fill: var(--light-always);
+	&:hover {
+		background: none;
+		background-color: var(--dark-always);
 	}
 }
 main > section > article.grid-container p {
