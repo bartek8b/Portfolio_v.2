@@ -157,7 +157,7 @@ nav {
 	height: calc(var(--space-base) * 4);
 	position: sticky;
 	top: 0;
-	border-bottom: 2px solid var(--secondary);
+	border-bottom: 2px solid var(--primary);
 	border-radius: var(--space-base) var(--space-base) calc(var(--space-base) * 4)
 		calc(var(--space-base) * 4);
 	z-index: 999;
@@ -192,8 +192,8 @@ nav > ul > li > a.active {
 
 /* ----------Main---------- */
 main {
-	border-top: 2px solid var(--secondary);
-	border-bottom: 2px solid var(--secondary);
+	border-top: 2px solid var(--primary);
+	border-bottom: 2px solid var(--primary);
 	border-radius: var(--space-base);
 	padding-top: 0;
 	/* padding-bottom: calc(var(--space-base) * 2); */
