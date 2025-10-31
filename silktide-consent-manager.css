@@ -10,6 +10,8 @@
 -------------------------------- */
 /* Wrapper (Global) */
 #silktide-wrapper {
+	--my-color: #031a6b;
+
 	--focus: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 0 0 6px #ffffff;
 	--boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
 	--fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
@@ -52,7 +54,7 @@
 	all: unset;
 	display: inline-block;
 	color: var(--primaryColor);
-  color: hsl(328, 59%, 20%);
+	color: #031a6b;
 }
 
 #silktide-wrapper a:hover {
@@ -83,7 +85,7 @@
 #silktide-wrapper .st-button,
 #silktide-wrapper .st-button--primary {
 	color: var(--backgroundColor);
-	background-color: hsl(328, 59%, 20%);
+	background-color: #031a6b;
 	border: 2px solid var(--primaryColor);
 	padding: 10px 20px;
 	text-decoration: none;
