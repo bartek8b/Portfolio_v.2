@@ -44,8 +44,9 @@ body {
 body,
 nav {
 	background-color: var(--bg);
-	background: url(assets/background/background_light.webp) no-repeat bottom
-		center;
+	background: linear-gradient(to top right, var(--primary) 0%, transparent 15%),
+		linear-gradient(to top left, var(--primary) 0%, transparent 15%),
+		linear-gradient(to top, var(--bg) 0%, var(--bg) 100%);
 	background-size: cover;
 	background-attachment: fixed;
 	transition: background 0.6s ease;
@@ -69,8 +70,8 @@ main > section > article a.call-to-action-btn {
 		var(--dark-always)
 	);
 	color: var(--light-always);
-	transition: border-radius ease 0.6s, box-shadow ease 0.6s,
-		background-color ease 0.6s;
+	transition: border-radius ease 0.6s, box-shadow ease 0.6s, ease 0.6s,
+		box-shadow ease 0.6s, ease 0.6s;
 }
 main > section > article a.call-to-action-btn:hover {
 	border-radius: calc(var(--space-base) / 2) calc(var(--space-base) / 2);
@@ -97,7 +98,7 @@ svg {
 	fill: var(--font);
 }
 svg:hover {
-	fill: var(--primary);
+	fill: var(--secondary);
 }
 a.call-to-action-btn > svg:hover {
 	fill: inherit;
@@ -109,13 +110,15 @@ h2 {
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
 }
 h1 {
-	color: var(--font);
+	color: var(--primary);
 }
 main > section > article.grid-container > div.portfolio-item,
 main > section > article.grid-container > div.stack-item,
-main > section > article.grid-container > div.services-item,
+main > section > article.grid-container > div.services-item {
+	box-shadow: 0px 0px 5px var(--font);
+}
 main > section.sub-container.solid-bg {
-	box-shadow: 0px 0px 5px var(--dark-always);
+	box-shadow: 0px 0px 5px var(--font);
 }
 p {
 	max-width: 70ch;
@@ -192,11 +195,10 @@ nav > ul > li > a.active {
 
 /* ----------Main---------- */
 main {
-	border-top: 2px solid var(--primary);
-	border-bottom: 2px solid var(--primary);
+	border-top: 1px solid var(--primary);
+	border-bottom: 1px solid var(--primary);
 	border-radius: var(--space-base);
 	padding-top: 0;
-	/* padding-bottom: calc(var(--space-base) * 2); */
 	padding-inline: 0;
 	margin-block: calc(var(--space-base) * 3);
 }
@@ -338,7 +340,6 @@ main > section > article > .portfolio-item > img {
 	}
 	&:hover {
 		opacity: 1;
-		cursor: context-menu;
 	}
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
@@ -430,8 +431,8 @@ main > section > article.contact-container {
 		color: inherit;
 	}
 	& a:hover {
-		color: var(--primary);
-		fill: var(--primary);
+		color: var(--secondary);
+		fill: var(--secondary);
 	}
 }
 main > section > article.contact-container .contact-svg {
@@ -508,13 +509,17 @@ section > article > *.show,
 		display: block;
 	}
 
-	body,
-	nav {
-		background: url(assets/background/background_dark.webp) no-repeat bottom
-			center;
-		background-size: cover;
-		background-attachment: fixed;
+	h1 {
+		color: var(--secondary);
 	}
+
+	main > section.sub-container.solid-bg,
+	main > section > article.grid-container > div.portfolio-item,
+	main > section > article.grid-container > div.stack-item,
+	main > section > article.grid-container > div.services-item {
+		box-shadow: 0px 0px 5px var(--primary);
+	}
+
 	img.logo-header,
 	footer > img,
 	main > section > article .hero-logo {
