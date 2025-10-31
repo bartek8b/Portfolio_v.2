@@ -87,7 +87,7 @@ button {
 	cursor: pointer;
 	box-shadow: var(--shadow);
 	background-color: transparent;
-	opacity: 0.7;
+	opacity: 0.8;
 	transition: opacity ease 0.6s, box-shadow ease 0.6s;
 }
 svg {
@@ -151,7 +151,7 @@ header {
 img.logo-header {
 	height: calc(var(--space-base) * 2);
 	width: auto;
-	filter: invert(30%);
+	filter: invert(20%);
 }
 /* ----------nav---------- */
 nav {
@@ -180,7 +180,7 @@ nav > ul > li {
 	list-style: none;
 }
 nav > ul > li > a {
-	opacity: 0.7;
+	opacity: 0.8;
 }
 nav > ul > li > a.active {
 	opacity: 1;
@@ -226,7 +226,7 @@ main > section > article.duo-container {
 }
 main > section > article .hero-logo {
 	max-width: calc(var(--space-base) * 10);
-	filter: invert(10%);
+	filter: invert(20%);
 	align-self: center;
 }
 main > section > article.duo-container > .duo-left,
@@ -285,7 +285,7 @@ main > section > article.grid-container > .stack-item > svg {
 	height: auto;
 	transition: fill ease 0.6s;
 	margin-top: calc(var(--space-base) / 2);
-	filter: invert(10%);
+	filter: invert(20%);
 }
 main > section > article.grid-container > .stack-item > svg:hover {
 	&#html {
@@ -330,7 +330,7 @@ main > section > article.grid-container > div.services-item {
 	gap: calc(var(--space-base) * 2);
 }
 main > section > article > .portfolio-item > img {
-	opacity: 0.7;
+	opacity: 0.8;
 	max-width: 70%;
 	transition: opacity ease 0.6s;
 	&#calculator {
@@ -352,7 +352,7 @@ main > section > article > .portfolio-item > div.portfolio-item-btns-container {
 main > section > article > .portfolio-item > div.tools-container {
 	display: flex;
 	flex-wrap: wrap;
-	gap: calc(var(--space-base) * 2);
+	gap: var(--space-base);
 	justify-content: center;
 	align-items: center;
 	padding-inline: calc(var(--space-base) * 2);
@@ -360,6 +360,7 @@ main > section > article > .portfolio-item > div.tools-container {
 		width: calc(var(--space-base) * 2);
 		height: auto;
 		fill: var(--font);
+		opacity: 0.8;
 	}
 }
 main > section > article a.call-to-action-btn.portfolio-item-btn {
@@ -467,7 +468,7 @@ footer {
 footer > a {
 	color: var(--font);
 	text-decoration: none;
-	opacity: 0.7;
+	opacity: 0.8;
 	font-size: 0.8rem;
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
 	font-weight: lighter;
@@ -479,11 +480,11 @@ footer > a {
 footer > img {
 	height: auto;
 	width: calc(var(--space-base) * 6);
-	opacity: 0.7;
-	filter: invert(30%);
+	opacity: 0.8;
+	filter: invert(20%);
 }
 footer svg {
-	opacity: 0.7;
+	opacity: 0.8;
 }
 
 /* Intersection observer */
@@ -546,7 +547,7 @@ section > article > *.show,
 	img.logo-header,
 	footer > img,
 	main > section > article .hero-logo {
-		filter: invert(70%);
+		filter: invert(80%);
 	}
 }
 /* Media queries */
