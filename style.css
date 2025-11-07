@@ -503,7 +503,7 @@ footer svg {
 .contact-container,
 section > article > * {
 	opacity: 0;
-	transform: translateY(20%) scale(0.95);
+	transform: translateY(20%) scale(0.97);
 	transition: opacity 0.9s ease, transform 0.9s ease;
 }
 .sub-container > h1.show,
