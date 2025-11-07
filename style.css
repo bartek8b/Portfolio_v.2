@@ -503,7 +503,7 @@ footer svg {
 .contact-container,
 section > article > * {
 	opacity: 0;
-	transform: translateY(20%) scale(0.97);
+	transform: translateY(20%);
 	transition: opacity 0.9s ease, transform 0.9s ease;
 }
 .sub-container > h1.show,
@@ -511,7 +511,7 @@ section > article > *.show,
 .contact-container.show,
 .site-header.show {
 	opacity: 1;
-	transform: translateY(0) scale(1);
+	transform: translateY(0);
 }
 
 /* Theme dark */
