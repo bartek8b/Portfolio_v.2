@@ -136,6 +136,7 @@ button.dark-light-btn {
 	display: none;
 	width: calc(var(--space-base) * 2);
 	height: auto;
+	transition: fill ease 0.6s;
 }
 
 /* ----------Header---------- */
@@ -193,7 +194,7 @@ nav > ul > li > a.active {
 }
 .menu-svg-container > svg {
 	height: calc(var(--space-base) * 3);
-	transition: opacity ease 0.6s, fill ease 0.6s;
+	transition: fill ease 0.6s;
 }
 
 /* ----------Main---------- */
