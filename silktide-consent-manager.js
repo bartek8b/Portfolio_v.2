@@ -592,6 +592,7 @@ class SilktideCookieBanner {
 
 	createCookieIcon() {
 		this.cookieIcon = document.createElement('button');
+		this.cookieIcon.type = 'button';
 		this.cookieIcon.id = 'silktide-cookie-icon';
 		this.cookieIcon.title = 'Manage your cookie preferences for this site';
 		this.cookieIcon.innerHTML = this.getCookieIconContent();
@@ -833,6 +834,7 @@ class SilktideCookieBanner {
 		// Check Cookie Icon exists before trying to add event listeners
 		if (this.cookieIcon) {
 			this.cookieIcon.addEventListener('click', () => {
+				e.preventDefault();
 				// If modal is not found, create it
 				if (!this.modal) {
 					this.createModal();
