@@ -277,11 +277,14 @@ main > section > article.grid-container.tech-stack-container {
 	gap: calc(var(--space-base) * 2);
 	grid-template-columns: repeat(
 		auto-fit,
-		minmax(calc(var(--space-base) * 10), 1fr)
+		minmax(calc(var(--space-base) * 8), 1fr)
 	);
 }
 main > section > article.grid-container > div.stack-item {
 	gap: var(--space-base);
+	& h2{
+		font-size: calc(0.8rem + 0.1vw);
+	}
 }
 main > section > article.grid-container > .stack-item > svg {
 	width: 50%;
