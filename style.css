@@ -282,7 +282,7 @@ main > section > article.grid-container.tech-stack-container {
 }
 main > section > article.grid-container > div.stack-item {
 	gap: var(--space-base);
-	& h2{
+	& h2 {
 		font-size: calc(0.8rem + 0.1vw);
 	}
 }
@@ -320,6 +320,12 @@ main > section > article.grid-container > .stack-item > svg:hover {
 	}
 	&#jest {
 		fill: #c21325;
+	}
+	&#react {
+		fill: #61dafb;
+	}
+	&#ghcopilot {
+		fill: #000000;
 	}
 }
 /* .portfolio-container & services-container */
