@@ -35,7 +35,8 @@ body {
 	--bg: #f5f0f0;
 	--font: #050915;
 
-	--shadow: inset 0 1px 2px var(--light-always), 0 1px 2px var(--bg),
+	--shadow:
+		inset 0 1px 2px var(--light-always), 0 1px 2px var(--bg),
 		0 1px 2px var(--secondary);
 }
 *::selection {
@@ -49,7 +50,9 @@ nav {
 	background: url(assets/background/background_light.webp) top center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	transition: background-color 0.6s ease, background 0.6s ease;
+	transition:
+		background-color 0.6s ease,
+		background 0.6s ease;
 }
 main > section > article a.call-to-action-btn {
 	align-self: center;
@@ -70,10 +73,14 @@ main > section > article a.call-to-action-btn {
 		var(--dark-always)
 	);
 	color: var(--light-always);
-	transition: border-radius ease 0.6s, box-shadow ease 0.6s, ease 0.6s,
-		box-shadow ease 0.6s, ease 0.6s;
+	transition:
+		border-radius ease 0.6s,
+		box-shadow ease 0.6s,
+		ease 0.6s,
+		box-shadow ease 0.6s,
+		ease 0.6s;
 }
-main > section > article a.call-to-action-btn:hover {
+main > section > article a.call-to-action-btn:active {
 	border-radius: calc(var(--space-base) / 2) calc(var(--space-base) / 2);
 }
 a:visited {
@@ -90,7 +97,9 @@ button {
 	box-shadow: var(--shadow);
 	background-color: transparent;
 	opacity: 0.8;
-	transition: opacity ease 0.6s, box-shadow ease 0.6s;
+	transition:
+		opacity ease 0.6s,
+		box-shadow ease 0.6s;
 }
 svg {
 	height: calc(var(--space-base) * 2);
@@ -100,10 +109,12 @@ svg {
 .silktide-logo svg {
 	fill: var(--primary);
 }
-svg:hover {
+nav svg:active,
+.dark-light-btn svg:active,
+footer svg:active {
 	fill: var(--secondary);
 }
-a.call-to-action-btn > svg:hover {
+a.call-to-action-btn > svg:active {
 	fill: inherit;
 }
 h1,
@@ -387,10 +398,10 @@ main > section > article a.call-to-action-btn.portfolio-item-btn {
 	& svg {
 		fill: var(--light-always);
 	}
-	&:hover {
-		background: none;
-		background-color: var(--dark-always);
-	}
+}
+main > section > article a.call-to-action-btn.portfolio-item-btn:active {
+	background: none;
+	background-color: var(--dark-always);
 }
 main > section > article.grid-container p {
 	text-align: center;
@@ -434,10 +445,6 @@ main > section > article div.call-to-contact {
 	justify-content: center;
 	gap: calc(var(--space-base) * 2);
 }
-main > section > article div.call-to-contact svg:hover,
-main > section > article div.services-item svg:hover {
-	fill: var(--font);
-}
 /* Contact.html */
 main > section > article.contact-container {
 	display: flex;
@@ -454,13 +461,15 @@ main > section > article.contact-container {
 		gap: calc(var(--space-base) * 1);
 		text-decoration: none;
 		fill: var(--font);
-		transition: fill ease 0.6s, color ease 0.6s;
+		transition:
+			fill ease 0.6s,
+			color ease 0.6s;
 		color: inherit;
 	}
-	& a:hover {
-		color: var(--secondary);
-		fill: var(--secondary);
-	}
+}
+main > section > article.contact-container a:active {
+	color: var(--secondary);
+	fill: var(--secondary);
 }
 main > section > article.contact-container .contact-svg {
 	height: auto;
@@ -484,10 +493,14 @@ footer > a {
 	font-size: 0.8rem;
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
 	font-weight: lighter;
+	transition: color 0.6s ease;
 	& svg {
 		height: auto;
 		width: calc(var(--space-base) * 2);
 	}
+}
+footer > a:active {
+	color: var(--secondary);
 }
 footer > img {
 	height: auto;
@@ -497,24 +510,31 @@ footer > img {
 }
 footer svg {
 	opacity: 0.8;
+	transition: fill ease 0.6s;
 }
 
 /* Intersection observer */
 .site-header {
 	opacity: 0;
 	transform: translateY(-30%);
-	transition: opacity 0.9s ease, transform 0.9s ease;
+	transition:
+		opacity 0.9s ease,
+		transform 0.9s ease;
 }
 .sub-container > h1 {
 	opacity: 0;
 	transform: translateY(-100%);
-	transition: opacity 0.9s ease, transform 0.9s ease;
+	transition:
+		opacity 0.9s ease,
+		transform 0.9s ease;
 }
 .contact-container,
 section > article > * {
 	opacity: 0;
 	transform: translateY(20%);
-	transition: opacity 0.9s ease, transform 0.9s ease;
+	transition:
+		opacity 0.9s ease,
+		transform 0.9s ease;
 }
 .sub-container > h1.show,
 section > article > *.show,
@@ -538,7 +558,9 @@ section > article > *.show,
 		background: url(assets/background/background_dark.webp) top center no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
-		transition: background-color 0.6s ease, background 0.6s ease;
+		transition:
+			background-color 0.6s ease,
+			background 0.6s ease;
 	}
 
 	.dark-light-btn .icon-dark > svg {
@@ -605,5 +627,29 @@ section > article > *.show,
 	}
 	main > section > article div.call-to-contact {
 		flex-direction: column;
+	}
+}
+@media (hover: hover) {
+	main > section > article a.call-to-action-btn:hover {
+		border-radius: calc(var(--space-base) / 2) calc(var(--space-base) / 2);
+	}
+	nav svg:hover,
+	.dark-light-btn svg:hover,
+	footer svg:hover {
+		fill: var(--secondary);
+	}
+	a.call-to-action-btn > svg:hover {
+		fill: inherit;
+	}
+	main > section > article a.call-to-action-btn.portfolio-item-btn:hover {
+		background: none;
+		background-color: var(--dark-always);
+	}
+	main > section > article.contact-container a:hover {
+		color: var(--secondary);
+		fill: var(--secondary);
+	}
+	footer > a:hover {
+		color: var(--secondary);
 	}
 }
