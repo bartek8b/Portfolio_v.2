@@ -3,7 +3,7 @@ body {
 	padding-inline: 20%;
 	-webkit-tap-highlight-color: transparent;
 	scroll-behavior: smooth;
-	text-wrap: balance;
+	text-wrap: pretty;
 	font-size: calc(1rem + 0.1vw);
 	line-height: 1.5;
 	min-height: 100vh;
