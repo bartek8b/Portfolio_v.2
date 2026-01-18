@@ -420,20 +420,21 @@ main > section > article.grid-container.services-container {
 main > section > article.grid-container > div.services-item {
 	gap: var(--space-base);
 }
-main > section > article ul {
+main > section > article.services-container ul {
 	list-style: none;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: calc(var(--space-base) * 4);
 	padding-block: calc(var(--space-base) * 2);
+	padding-inline: 0;
 	align-items: center;
 	justify-content: center;
 	& li {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 		gap: var(--space-base);
 	}
 	& svg {
