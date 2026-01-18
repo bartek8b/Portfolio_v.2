@@ -259,7 +259,6 @@ main > section > article .hero-photo {
 	width: 30%;
 	height: auto;
 	border-radius: 999rem;
-	box-shadow: var(--shadow);
 }
 main > section > article #call-to-action-email {
 	min-width: calc(var(--space-base) * 14);
@@ -269,7 +268,6 @@ main > section > article #call-to-action-email {
 main > section > article.grid-container {
 	display: grid;
 	grid-auto-rows: 1fr;
-	margin-top: var(--space-base);
 }
 main > section > article.grid-container h2 {
 	border-radius: var(--space-base) var(--space-base) 0 0;
@@ -360,17 +358,12 @@ main > section > article.grid-container > div.portfolio-item {
 	gap: calc(var(--space-base) * 2);
 }
 main > section > article > .portfolio-item > img {
-	opacity: 0.8;
 	max-width: 70%;
-	transition: opacity ease 0.6s;
 	&#calculator {
 		max-width: 50%;
 	}
 	&#carousel {
 		max-width: 50%;
-	}
-	&:hover {
-		opacity: 1;
 	}
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
@@ -598,6 +591,11 @@ section > article > *.show,
 	main > section > article .hero-logo {
 		filter: invert(80%);
 	}
+
+	main > section > article .hero-photo,
+	main > section > article > .portfolio-item > img {
+		filter: brightness(0.8) contrast(0.9);
+	}
 }
 /* Media queries */
 @media (max-width: 1024px) {
@@ -642,6 +640,11 @@ section > article > *.show,
 	}
 	main > section > article div.call-to-contact {
 		flex-direction: column;
+	}
+}
+@media (max-width: 360px) {
+	body {
+		padding-inline: calc(var(--space-base) * 0.5);
 	}
 }
 @media (hover: hover) {
