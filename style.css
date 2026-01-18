@@ -256,9 +256,10 @@ main > section > article #call-to-action-portfolio {
 	text-align: center;
 }
 main > section > article .hero-photo {
-	width: 30%;
+	width: 25%;
 	height: auto;
 	border-radius: 999rem;
+	box-shadow: 0px 0px 5px var(--font);
 }
 main > section > article #call-to-action-email {
 	min-width: calc(var(--space-base) * 14);
@@ -582,7 +583,8 @@ section > article > *.show,
 	main > section.sub-container.solid-bg,
 	main > section > article.grid-container > div.portfolio-item,
 	main > section > article.grid-container > div.stack-item,
-	main > section > article.grid-container > div.services-item {
+	main > section > article.grid-container > div.services-item,
+	main > section > article .hero-photo {
 		box-shadow: 0px 0px 5px var(--primary);
 	}
 
