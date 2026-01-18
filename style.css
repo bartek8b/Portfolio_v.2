@@ -255,6 +255,16 @@ main > section > article #call-to-action-portfolio {
 	min-width: calc(var(--space-base) * 10);
 	text-align: center;
 }
+main > section > article .hero-photo {
+	width: 30%;
+	height: auto;
+	border-radius: 999rem;
+	box-shadow: var(--shadow);
+}
+main > section > article #call-to-action-email {
+	min-width: calc(var(--space-base) * 14);
+	padding: var(--space-base);
+}
 /* ----------Main----------grid container---------- */
 main > section > article.grid-container {
 	display: grid;
@@ -329,9 +339,6 @@ main > section > article.grid-container > .stack-item > svg:hover {
 	}
 	&#ga {
 		fill: #e37400;
-	}
-	&#jest {
-		fill: #c21325;
 	}
 	&#react {
 		fill: #61dafb;
