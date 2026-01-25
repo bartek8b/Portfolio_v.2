@@ -647,7 +647,6 @@ section > article > *.show,
 		width: 35%;
 	}
 	main > section > article.grid-container.process-container {
-		gap: var(--space-base);
 		grid-template-columns: 1fr;
 	}
 	main > section > article a.call-to-action-btn {
