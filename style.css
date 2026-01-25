@@ -149,7 +149,6 @@ button.dark-light-btn {
 	display: none;
 	width: calc(var(--space-base) * 2);
 	height: auto;
-	transition: fill ease 0.6s;
 }
 
 /* ----------Header---------- */
@@ -182,7 +181,7 @@ nav {
 		calc(var(--space-base) * 4);
 	z-index: 999;
 	transform: translateY(0);
-	transition: transform ease 0.6s;
+	transition: transform ease 0.3s;
 }
 .nav-hidden {
 	transform: translateY(-100%);
@@ -212,7 +211,6 @@ nav > ul > li > a.active {
 }
 .menu-svg-container > svg {
 	height: calc(var(--space-base) * 3);
-	transition: fill ease 0.6s;
 }
 
 /* ----------Main---------- */
@@ -334,7 +332,6 @@ main > section > article.grid-container > div.stack-item {
 main > section > article.grid-container > .stack-item > svg {
 	width: 60%;
 	height: auto;
-	transition: fill ease 0.6s;
 	margin-top: calc(var(--space-base) / 2);
 }
 /* Not hidden in media queries (hover) because behavior looks well as it is on mobile device -> just decoration and it's okay for the fill color to be kept after tap */
@@ -525,14 +522,10 @@ footer > a {
 	font-size: 0.8rem;
 	font-family: 'text-font', 'Lucida Sans', Verdana, sans-serif;
 	font-weight: lighter;
-	transition: color 0.6s ease;
 	& svg {
 		height: auto;
 		width: calc(var(--space-base) * 2);
 	}
-}
-footer > a:active {
-	color: var(--secondary);
 }
 footer > img {
 	height: auto;
@@ -542,7 +535,6 @@ footer > img {
 }
 footer svg {
 	opacity: 0.8;
-	transition: fill ease 0.6s;
 }
 
 /* Intersection observer */
@@ -698,8 +690,5 @@ section > article > *.show,
 	main > section > article.contact-container a:hover {
 		color: var(--secondary);
 		fill: var(--secondary);
-	}
-	footer > a:hover {
-		color: var(--secondary);
 	}
 }
