@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Critical: ustaw theme jak najwcześniej (przed CSS), żeby uniknąć "flash" -->
+    <script>
+        (function () {
+            try {
+                // Jeśli data-theme już istnieje (np. z SSR), nie nadpisuj go
+                if (document.documentElement.hasAttribute('data-theme')) return;
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark' || saved === 'light') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                    return;
+                }
+
+                // preferencja systemowa jako fallback (bezpieczny optional chaining)
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            } catch (e) {
+                // localStorage może rzucać (np. w trybie prywatnym) — bezpieczny fallback
+            }
+        })();
+    </script>
+
+    <!-- Preload tła (przeglądarka zaczyna pobierać obrazy wcześniej) -->
+    <link rel="preload" as="image" href="assets/background/background_light.webp">
+    <link rel="preload" as="image" href="assets/background/background_dark.webp">
+    <!-- Preload logo nagłówka — ważne: przed resztą stylesheet/script -->
+    <link rel="preload" as="image" href="assets/logo/logo_small.webp" fetchpriority="high">
+
+    <!-- Ustaw meta description dla każdej podstrony -->
+    <meta name="description" content="8b.com.pl Bartłomiej Balcerzak - serwis">
+
+    <!-- Ustaw Open Graph Protocol (OGP) -->
+    <meta property="og:title" content="8b.com.pl" />
+    <meta property="og:description" content="Web development" />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/bartek8b/Portfolio_v.2/main/assets/background/ogp_image.webp" />
+    <meta property="og:url" content="https://8b.com.pl" />
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="modern-normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css">
+
+    <!-- Ustaw odpowiednie skrypty dla podstron -->
+    <script src="index.js" defer></script>
+    <script src="silktide-consent-manager.js"></script>
+
+    <!-- Silktide cookie banner -->
+    <script>
+        silktideCookieBannerManager.updateCookieBannerConfig({
+            background: {
+                showBackground: false
+            },
+            cookieIcon: {
+                position: "bottomLeft"
+            },
+            cookieTypes: [
+                {
+                    id: "google_analytics_4",
+                    name: "Google Analytics 4",
+                    description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
+                    required: false,
+                    onAccept: function () {
+                        // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { dataLayer.push(arguments); }
+
+                        const script = document.createElement('script');
+                        script.async = true;
+                        script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
+                        script.onerror = function () {
+                            console.error("Nie udało się załadować Google Analytics.");
+                        };
+                        document.head.appendChild(script);
+
+                        script.onload = function () {
+                            gtag('js', new Date());
+                            gtag('config', 'G-5KSZFXCY2B');
+                            gtag('consent', 'update', {
+                                analytics_storage: 'granted',
+                            });
+                            dataLayer.push({
+                                'event': 'consent_accepted_anonimowa_analiza_ruchu',
+                            });
+                        };
+                    },
+                    onReject: function () {
+                        // Aktualizacja zgody na przechowywanie danych analitycznych
+                        if (typeof gtag === "function") {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'denied',
+                            });
+                        } else {
+                            console.warn("Google Analytics nie zostało zainicjalizowane.");
+                        }
+                    }
+                }
+            ],
+            text: {
+                banner: {
+                    description: "",
+                    acceptAllButtonText: "Akceptuj",
+                    acceptAllButtonAccessibleLabel: "Zgoda na pliki cookie",
+                    rejectNonEssentialButtonText: "Odmowa",
+                    rejectNonEssentialButtonAccessibleLabel: "Nie zgadzaj się na pliki cookie",
+                    preferencesButtonText: "Preferences",
+                    preferencesButtonAccessibleLabel: "Toggle preferences"
+                },
+                preferences: {
+                    title: "Preferencje plików cookie",
+                    description: "<p><a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">Jak Google wykorzystuje dane gromadzone podczas korzystania z witryn i aplikacji</a><br></p>",
+                    creditLinkText: "Siltkide",
+                    creditLinkAccessibleLabel: "Get this banner for free"
+                }
+            },
+            position: {
+                banner: "bottomCenter"
+            }
+        });
+    </script>
+
+    <!-- Ustaw favicon -->
+    <link rel="icon" type="image/webp" href="assets/logo/logo.webp">
+
+    <!-- Ustaw tytuł dla każdej podstrony -->
+    <title>Usługi | 8b.com.pl | Web development</title>
+</head>
+
+
+<body>
+
+    <!-- Class "site-header" added to different it form siltide header & prevent silktide header form disappear while using Intersection Observer for animations -->
+    <header class="site-header">
+        <a href="index.html" aria-label="Strona główna">
+            <img src="assets/logo/logo_small.webp" class="logo-header" alt="Logo 8b.com.pl" loading="eager"
+                fetchpriority="high">
+        </a>
+
+        <button class="dark-light-btn" aria-label="Przełącz motyw: jasny/ciemny">
+            <span class="icon icon-light" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z" />
+                </svg>
+            </span>
+            <span class="icon icon-dark" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M12,2C9.76,2 7.78,3.05 6.5,4.68L16.31,14.5C17.94,13.21 19,11.24 19,9A7,7 0 0,0 12,2M3.28,4L2,5.27L5.04,8.3C5,8.53 5,8.76 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H14.73L18.73,22L20,20.72L3.28,4M9,20V21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9Z" />
+                </svg>
+            </span>
+        </button>
+    </header>
+
+    <nav>
+        <!-- Set class active -->
+        <ul>
+            <li><a href="index.html" class="menu-svg-container" aria-label="Strona główna" title="Strona główna">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+                    </svg></a>
+
+            </li>
+            <li><a href="portfolio.html" class="menu-svg-container" aria-label="Portfolio" title="Portfolio">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z" />
+                    </svg></a>
+
+            </li>
+            <li><a aria-current="page" tabindex="0" class="menu-svg-container active" aria-label="Usługi"
+                    title="Usługi">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z" />
+                    </svg></a>
+
+            </li>
+            <li><a href="contact.html" class="menu-svg-container" aria-label="Kontakt" title="Kontakt">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                    </svg>
+                </a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Set separately for every site -->
+        <section class="sub-container">
+            <h1>usługi</h1>
+            <article class="grid-container services-container">
+                <div class="services-item">
+                    <h2>funkcjonalności</h2>
+
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23,11H18A1,1 0 0,0 17,12V21A1,1 0 0,0 18,22H23A1,1 0 0,0 24,21V12A1,1 0 0,0 23,11M23,20H18V13H23V20M20,2H2C0.89,2 0,2.89 0,4V16A2,2 0 0,0 2,18H9V20H7V22H15V20H13V18H15V16H2V4H20V9H22V4C22,2.89 21.1,2 20,2Z" /></svg>
+                            Responsywność
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M13 5C15.21 5 17 6.79 17 9C17 10.5 16.2 11.77 15 12.46V11.24C15.61 10.69 16 9.89 16 9C16 7.34 14.66 6 13 6S10 7.34 10 9C10 9.89 10.39 10.69 11 11.24V12.46C9.8 11.77 9 10.5 9 9C9 6.79 10.79 5 13 5M20 20.5C19.97 21.32 19.32 21.97 18.5 22H13C12.62 22 12.26 21.85 12 21.57L8 17.37L8.74 16.6C8.93 16.39 9.2 16.28 9.5 16.28H9.7L12 18V9C12 8.45 12.45 8 13 8S14 8.45 14 9V13.47L15.21 13.6L19.15 15.79C19.68 16.03 20 16.56 20 17.14V20.5M20 2H4C2.9 2 2 2.9 2 4V12C2 13.11 2.9 14 4 14H8V12L4 12L4 4H20L20 12H18V14H20V13.96L20.04 14C21.13 14 22 13.09 22 12V4C22 2.9 21.11 2 20 2Z" />
+                            </svg>
+                            Interaktywność
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M14 16L15.32 17.76C14.32 19.68 12.31 21 10 21C6.69 21 4 18.31 4 15C4 12.57 5.46 10.5 7.55 9.55L7.76 11.72C6.71 12.44 6 13.63 6 15C6 17.21 7.79 19 10 19C11.86 19 13.41 17.72 13.86 16H14M19.55 16.11L18.3 16.73L15.5 13H10.91L10.71 11H14V9H10.5L10.2 6C11.21 5.88 12 5.04 12 4C12 2.9 11.11 2 10 2S8 2.9 8 4C8 4.03 8 4.07 8 4.1H8L9.1 15H14.5L17.7 19.27L20.45 17.9L19.55 16.11Z" />
+                            </svg>
+                            Dostępność
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2M19.07,3.5L20.5,4.93L4.93,20.5L3.5,19.07L19.07,3.5M12.89,5.93L11.41,5L9.97,6L10.39,4.3L9,3.24L10.75,3.12L11.33,1.47L12,3.1L13.73,3.13L12.38,4.26L12.89,5.93M9.59,9.54L8.43,8.81L7.31,9.59L7.65,8.27L6.56,7.44L7.92,7.35L8.37,6.06L8.88,7.33L10.24,7.36L9.19,8.23L9.59,9.54M19,13.5A5.5,5.5 0 0,1 13.5,19C12.28,19 11.15,18.6 10.24,17.93L17.93,10.24C18.6,11.15 19,12.28 19,13.5M14.6,20.08L17.37,18.93L17.13,22.28L14.6,20.08M18.93,17.38L20.08,14.61L22.28,17.15L18.93,17.38M20.08,12.42L18.94,9.64L22.28,9.88L20.08,12.42M9.63,18.93L12.4,20.08L9.87,22.27L9.63,18.93Z" />
+                            </svg>
+                            Tryb jasny/ciemny
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="services-item">
+                    <h2>serwis</h2>
+
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M21,10.12H14.22L16.96,7.3C14.23,4.6 9.81,4.5 7.08,7.2C4.35,9.91 4.35,14.28 7.08,17C9.81,19.7 14.23,19.7 16.96,17C18.32,15.65 19,14.08 19,12.1H21C21,14.08 20.12,16.65 18.36,18.39C14.85,21.87 9.15,21.87 5.64,18.39C2.14,14.92 2.11,9.28 5.62,5.81C9.13,2.34 14.76,2.34 18.27,5.81L21,3V10.12M12.5,8V12.25L16,14.33L15.28,15.54L11,13V8H12.5Z" />
+                            </svg>
+                            Aktualizacja
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M4,1H20A1,1 0 0,1 21,2V6A1,1 0 0,1 20,7H4A1,1 0 0,1 3,6V2A1,1 0 0,1 4,1M4,9H20A1,1 0 0,1 21,10V14A1,1 0 0,1 20,15H4A1,1 0 0,1 3,14V10A1,1 0 0,1 4,9M4,17H20A1,1 0 0,1 21,18V22A1,1 0 0,1 20,23H4A1,1 0 0,1 3,22V18A1,1 0 0,1 4,17M9,5H10V3H9V5M9,13H10V11H9V13M9,21H10V19H9V21M5,3V5H7V3H5M5,11V13H7V11H5M5,19V21H7V19H5Z" />
+                            </svg>
+                            Hosting
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,10.84 21.79,9.69 21.39,8.61L19.79,10.21C19.93,10.8 20,11.4 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.6,4 13.2,4.07 13.79,4.21L15.4,2.6C14.31,2.21 13.16,2 12,2M19,2L15,6V7.5L12.45,10.05C12.3,10 12.15,10 12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.85 14,11.7 13.95,11.55L16.5,9H18L22,5H19V2M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12H16A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8V6Z" />
+                            </svg>
+                            SEO
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z" />
+                            </svg>
+                            Statystyka
+                        </li>
+                    </ul>
+
+                </div>
+
+
+
+            </article>
+        </section>
+
+        <section class="sub-container solid-bg">
+            <article class="duo-container">
+                <div class="duo-left">
+                    <div class="call-to-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M22 5.5H9C7.9 5.5 7 6.4 7 7.5V16.5C7 17.61 7.9 18.5 9 18.5H22C23.11 18.5 24 17.61 24 16.5V7.5C24 6.4 23.11 5.5 22 5.5M22 9.17L15.5 12.5L9 9.17V7.5L15.5 10.81L22 7.5V9.17M5 16.5C5 16.67 5.03 16.83 5.05 17H1C.448 17 0 16.55 0 16S.448 15 1 15H5V16.5M3 7H5.05C5.03 7.17 5 7.33 5 7.5V9H3C2.45 9 2 8.55 2 8S2.45 7 3 7M1 12C1 11.45 1.45 11 2 11H5V13H2C1.45 13 1 12.55 1 12Z" />
+                        </svg>
+                        Dowiedz się więcej
+                    </div>
+                </div>
+                <div class="duo-right">
+                    <a href="contact.html" class="call-to-action-btn" id="call-to-action-services" role="button"
+                        aria-label="Przejdź do strony Kontakt">Skontaktuj się</a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer>
+        <img src="assets/logo/logo.webp" alt="Logo 8b.com.pl" loading="lazy">
+
+        <a href="https://github.com/bartek8b" target="_blank" rel="noreferrer"
+            aria-label="Przejdź do mojego profilu github" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+        </a>
+
+        <a href="https://github.com/bartek8b" target="_blank" rel="noreferrer"
+            aria-hidden="true" tabindex="-1">&copy; 2026 Bartłomiej Balcerzak</a>
+
+    </footer>
+</body>
+
+</html>
