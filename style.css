@@ -117,15 +117,20 @@ footer svg:active {
 a.call-to-action-btn > svg:active {
 	fill: inherit;
 }
-h1,
-h2 {
+h1 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
+	font-family: 'headers-font', 'Courier New', Courier, monospace;
+}
+h2 {
+	font-weight: bold;
+	font-size: calc(1rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
 }
 h1 {
 	color: var(--primary);
 }
+main > section > article.grid-container > div.process-item,
 main > section > article.grid-container > div.portfolio-item,
 main > section > article.grid-container > div.stack-item,
 main > section > article.grid-container > div.services-item {
@@ -292,6 +297,24 @@ main > section > article.grid-container > div {
 }
 /* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
 
+/* .process-container */
+main > section > article.grid-container.process-container {
+	gap: calc(var(--space-base) * 2);
+	grid-template-columns: repeat(2, 1fr);
+}
+
+main > section > article.grid-container > .process-item {
+	gap: calc(var(--space-base) * 2);
+}
+main > section > article.grid-container > .process-item > svg {
+	width: 20%;
+	height: auto;
+	margin-top: calc(var(--space-base) * 2);
+}
+main > section > article.grid-container > .process-item p.process-info {
+	text-align: left;
+}
+
 /* .tech-stack-container */
 main > section > article.grid-container.tech-stack-container {
 	gap: var(--space-base);
@@ -311,7 +334,6 @@ main > section > article.grid-container > .stack-item > svg {
 	height: auto;
 	transition: fill ease 0.6s;
 	margin-top: calc(var(--space-base) / 2);
-	filter: invert(20%);
 }
 /* Not hidden in media queries (hover) because behavior looks well as it is on mobile device -> just decoration and it's okay for the fill color to be kept after tap */
 main > section > article.grid-container > .stack-item > svg:hover {
@@ -580,6 +602,7 @@ section > article > *.show,
 	}
 
 	main > section.sub-container.solid-bg,
+	main > section > article.grid-container > div.process-item,
 	main > section > article.grid-container > div.portfolio-item,
 	main > section > article.grid-container > div.stack-item,
 	main > section > article.grid-container > div.services-item {
@@ -632,6 +655,10 @@ section > article > *.show,
 	main > section > article .hero-photo {
 		width: 35%;
 	}
+	main > section > article.grid-container.process-container {
+		gap: var(--space-base);
+		grid-template-columns: 1fr;
+	}
 	main > section > article a.call-to-action-btn {
 		margin-top: var(--space-base);
 	}
@@ -639,7 +666,8 @@ section > article > *.show,
 		max-width: 50%;
 	}
 	main > section > article.services-container ul {
-	grid-template-columns: 1fr;}
+		grid-template-columns: 1fr;
+	}
 	main > section > article #call-to-action-services {
 		margin-bottom: calc(var(--space-base) * 2);
 	}
