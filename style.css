@@ -50,9 +50,6 @@ nav {
 	background: url(assets/background/background_light.webp) top center no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	transition:
-		background-color 0.6s ease,
-		background 0.6s ease;
 }
 main > section > article a.call-to-action-btn {
 	align-self: center;
@@ -184,6 +181,11 @@ nav {
 	border-radius: var(--space-base) var(--space-base) calc(var(--space-base) * 4)
 		calc(var(--space-base) * 4);
 	z-index: 999;
+	transform: translateY(0);
+	transition: transform ease 0.6s;
+}
+.nav-hidden {
+	transform: translateY(-100%);
 }
 nav > ul {
 	display: flex;
@@ -234,7 +236,6 @@ main > section.sub-container:not(:last-of-type) {
 }
 main > section.sub-container.solid-bg {
 	background-color: var(--bg);
-	transition: background-color 0.6s ease;
 }
 
 /* ----------Main----------Duo container---------- */
@@ -295,6 +296,7 @@ main > section > article.grid-container > div {
 	align-items: center;
 	padding-bottom: calc(var(--space-base) * 3);
 }
+
 /* !!! -----SET FOR DIFFERENT GRID TYPES SEPARETLY----- */
 
 /* .process-container */
@@ -588,9 +590,6 @@ section > article > *.show,
 		background: url(assets/background/background_dark.webp) top center no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
-		transition:
-			background-color 0.6s ease,
-			background 0.6s ease;
 	}
 
 	.dark-light-btn .icon-dark > svg {

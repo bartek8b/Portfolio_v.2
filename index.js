@@ -6,7 +6,7 @@ function applyTheme(isThemeDark) {
 	isDark = isThemeDark;
 	document.documentElement.setAttribute(
 		'data-theme',
-		isThemeDark ? 'dark' : 'light'
+		isThemeDark ? 'dark' : 'light',
 		// NOTE: do NOT mutate button.innerHTML here — icons are embedded in HTML and toggled via CSS.
 	);
 }
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		colorSchemeBtn.setAttribute('aria-pressed', String(isDark));
 		colorSchemeBtn.setAttribute(
 			'aria-label',
-			isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny'
+			isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny',
 		);
 
 		colorSchemeBtn.addEventListener('click', () => {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			colorSchemeBtn.setAttribute('aria-pressed', String(isDark));
 			colorSchemeBtn.setAttribute(
 				'aria-label',
-				isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny'
+				isDark ? 'Przełącz motyw na jasny' : 'Przełącz motyw na ciemny',
 			);
 		});
 	}
@@ -64,7 +64,7 @@ const oneTimeObserver = new IntersectionObserver(
 	},
 	{
 		rootMargin: '0px 0px 0px 0px',
-	}
+	},
 );
 
 const constantObserver = new IntersectionObserver(
@@ -79,10 +79,27 @@ const constantObserver = new IntersectionObserver(
 	},
 	{
 		rootMargin: '0px 0px 0px 0px',
-	}
+	},
 );
 
 headings.forEach(elem => oneTimeObserver.observe(elem));
 articles.forEach(elem => oneTimeObserver.observe(elem));
 
 constantObserver.observe(header);
+
+// Nav visible on scroll
+
+let lastScrollTop = 0;
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+	let scrollToTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	if (scrollToTop > lastScrollTop && scrollToTop > 100) {
+		nav.classList.add('nav-hidden');
+	} else {
+		nav.classList.remove('nav-hidden');
+	}
+
+	lastScrollTop = scrollToTop <= 0 ? 0 : scrollToTop;
+});
