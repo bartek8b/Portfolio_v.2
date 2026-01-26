@@ -181,7 +181,7 @@ nav {
 		calc(var(--space-base) * 4);
 	z-index: 999;
 	transform: translateY(0);
-	transition: transform ease 0.3s;
+	transition: transform ease 0.2s;
 }
 .nav-hidden {
 	transform: translateY(-100%);
@@ -559,7 +559,7 @@ footer svg {
 .contact-container,
 section > article > * {
 	opacity: 0;
-	transform: translateY(20%);
+	transform: translateY(15%);
 	transition:
 		opacity 0.9s ease,
 		transform 0.9s ease;
