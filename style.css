@@ -307,7 +307,7 @@ main > section > article.grid-container > .process-item {
 	gap: calc(var(--space-base) * 2);
 }
 main > section > article.grid-container > .process-item > svg {
-	width: 20%;
+	width: 15%;
 	height: auto;
 	margin-top: calc(var(--space-base) * 2);
 }
@@ -369,11 +369,8 @@ main > section > article.grid-container > .stack-item > svg:hover {
 }
 /* .portfolio-container*/
 main > section > article.grid-container.portfolio-container {
-	gap: calc(var(--space-base) * 4);
-	grid-template-columns: repeat(
-		auto-fit,
-		minmax(calc(var(--space-base) * 15), 1fr)
-	);
+	gap: calc(var(--space-base) * 2);
+	grid-template-columns: repeat(2, 1fr);
 }
 
 main > section > article.grid-container > div.portfolio-item {
@@ -439,13 +436,23 @@ main > section > article div.call-to-contact {
 main > section > article.grid-container.services-container {
 	gap: calc(var(--space-base) * 4);
 }
-main > section > article.grid-container > div.services-item {
-	gap: var(--space-base);
+main > section > article.grid-container > div.services-item .service-name {
+	font-weight: bold;
+	border-bottom: 3px solid var(--secondary);
+}
+main
+	> section
+	> article.grid-container
+	> div.services-item
+	.service-description {
+	text-align: center;
+	max-width: 75%;
 }
 main > section > article.services-container ul {
 	list-style: none;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: 1fr;
 	gap: calc(var(--space-base) * 4);
 	padding-block: calc(var(--space-base) * 2);
 	padding-inline: 0;
@@ -455,11 +462,11 @@ main > section > article.services-container ul {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-around;
+		align-self: start;
 		gap: var(--space-base);
 	}
 	& svg {
-		width: 15%;
+		width: 12%;
 		height: auto;
 	}
 	& a {
@@ -651,6 +658,9 @@ section > article > *.show,
 	}
 	main > section > article a.call-to-action-btn {
 		margin-top: var(--space-base);
+	}
+	main > section > article.grid-container.portfolio-container {
+		grid-template-columns: 1fr;
 	}
 	main > section > article > .portfolio-item > img {
 		max-width: 50%;
