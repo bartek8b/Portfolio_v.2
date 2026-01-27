@@ -463,15 +463,13 @@ main > section > article.services-container ul {
 	gap: calc(var(--space-base) * 4);
 	padding-block: calc(var(--space-base) * 2);
 	padding-inline: 0;
-	align-items: center;
+	align-items: start;
 	justify-content: center;
 	& li {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 		text-align: center;
-		align-self: center;
 		gap: var(--space-base);
 	}
 	& svg {
