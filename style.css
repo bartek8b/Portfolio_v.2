@@ -1,5 +1,5 @@
 body {
-	background-color: var(--bg-body);
+	background-color: var(--bg);
 	padding-block: var(--space-base);
 	padding-inline: 20%;
 	-webkit-tap-highlight-color: transparent;
