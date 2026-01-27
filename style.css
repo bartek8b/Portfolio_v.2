@@ -588,7 +588,7 @@ section > article > *.show,
 	--font: #f5f0f0;
 
 	body::before {
-		background: url(assets/background/background_dark.webp) center center
+		background: url(assets/background/background_dark.webp) top center
 			no-repeat;
 		background-size: cover;
 	}
