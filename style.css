@@ -38,7 +38,7 @@ body {
 	--font: #050915;
 
 	--shadow:
-		inset 0 1px 2px var(--light-always), 0 1px 2px var(--bg),
+		inset 0 1px 2px var(--light-always), 0 1px 2px var(--primary),
 		0 1px 2px var(--secondary);
 }
 *::selection {
@@ -310,7 +310,7 @@ main > section > article.grid-container > .process-item > svg {
 	margin-top: calc(var(--space-base) * 2);
 }
 main > section > article.grid-container > .process-item p.process-info {
-	text-align: left;
+	text-align: center;
 }
 
 /* .tech-stack-container */
