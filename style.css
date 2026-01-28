@@ -27,8 +27,8 @@ body {
 
 	--primary: hsl(215, 95%, 25%);
 	--secondary: hsl(170, 66%, 51%);
-	--primary-blur: #03367c80;
-	--secondary-blur: #30d5b980;
+	--primary-blur: hsla(215, 95%, 25%, 0.7);
+	--secondary-blur: hsla(170, 66%, 51%, 0.7);
 
 	--light-always: #f5f0f0;
 	--dark-always: #080e21;
@@ -588,6 +588,8 @@ section > article > *.show,
 	--bg-body: hsl(225, 47%, 7%);
 	--bg: hsl(225, 62%, 10%);
 	--font: #f5f0f0;
+	--primary-blur: hsla(215, 95%, 25%, 0.3);
+	--secondary-blur: hsla(170, 66%, 51%, 0.3);
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
