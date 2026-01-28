@@ -25,10 +25,10 @@ body {
 :root {
 	--space-base: 1rem;
 
-	/* --primary: hsl(227, 95%, 25%); */
 	--primary: hsl(215, 95%, 25%);
-	/* --secondary: hsl(175, 66%, 51%); */
 	--secondary: hsl(170, 66%, 51%);
+	--primary-blur: #03367c80;
+	--secondary-blur: #30d5b980;
 
 	--light-always: #f5f0f0;
 	--dark-always: #080e21;
@@ -229,8 +229,18 @@ main > section.sub-container:not(:last-of-type) {
 	margin-bottom: calc(var(--space-base) * 2);
 }
 main > section.sub-container.solid-bg {
-	background: url(assets/background/background_light.webp) center center
-		no-repeat;
+	background:
+		radial-gradient(
+			farthest-corner at 100% 100%,
+			var(--primary-blur) 0%,
+			#ffffff00 50%
+		),
+		radial-gradient(
+			farthest-corner at 32% 3%,
+			var(--secondary-blur) 0%,
+			#ffffff00 50%
+		),
+		linear-gradient(0deg, var(--bg) 0% 100%, #ffffff00 100%);
 	background-size: cover;
 }
 
@@ -575,8 +585,8 @@ section > article > *.show,
 	display: block;
 }
 [data-theme='dark'] {
-	--bg-body: hsl(225, 47%, 2%);
-	--bg: hsl(225, 62%, 5%);
+	--bg-body: hsl(225, 47%, 7%);
+	--bg: hsl(225, 62%, 10%);
 	--font: #f5f0f0;
 
 	.dark-light-btn .icon-dark > svg {
@@ -588,8 +598,18 @@ section > article > *.show,
 	}
 
 	main > section.sub-container.solid-bg {
-		background: url(assets/background/background_dark.webp) center center
-			no-repeat;
+		background:
+			radial-gradient(
+				farthest-corner at 100% 100%,
+				var(--secondary-blur) 0%,
+				#ffffff00 50%
+			),
+			radial-gradient(
+				farthest-corner at 32% 3%,
+				var(--primary-blur) 0%,
+				#ffffff00 50%
+			),
+			linear-gradient(0deg, var(--bg) 0% 100%, #ffffff00 100%);
 		background-size: cover;
 	}
 
