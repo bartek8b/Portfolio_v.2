@@ -113,14 +113,12 @@ h1 {
 	font-weight: bold;
 	font-size: calc(1.2rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
+	color: var(--primary);
 }
 h2 {
 	font-weight: bold;
 	font-size: calc(1rem + 0.1vw);
 	font-family: 'headers-font', 'Courier New', Courier, monospace;
-}
-h1 {
-	color: var(--primary);
 }
 main > section > article.grid-container > div.process-item,
 main > section > article.grid-container > div.portfolio-item,
@@ -232,12 +230,12 @@ main > section.sub-container.solid-bg {
 	background:
 		radial-gradient(
 			farthest-corner at 100% 100%,
-			var(--primary-blur) 0%,
+			var(--secondary-blur) 0%,
 			#ffffff00 50%
 		),
 		radial-gradient(
-			farthest-corner at 32% 3%,
-			var(--secondary-blur) 0%,
+			farthest-corner at 0% 0%,
+			var(--primary-blur) 0%,
 			#ffffff00 50%
 		),
 		linear-gradient(0deg, var(--bg) 0% 100%, #ffffff00 100%);
@@ -597,22 +595,6 @@ section > article > *.show,
 
 	h1 {
 		color: var(--secondary);
-	}
-
-	main > section.sub-container.solid-bg {
-		background:
-			radial-gradient(
-				farthest-corner at 100% 100%,
-				var(--secondary-blur) 0%,
-				#ffffff00 50%
-			),
-			radial-gradient(
-				farthest-corner at 32% 3%,
-				var(--primary-blur) 0%,
-				#ffffff00 50%
-			),
-			linear-gradient(0deg, var(--bg) 0% 100%, #ffffff00 100%);
-		background-size: cover;
 	}
 
 	main > section.sub-container.solid-bg,
