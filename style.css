@@ -27,8 +27,8 @@ body {
 
 	--primary: hsl(215, 95%, 25%);
 	--secondary: hsl(170, 66%, 51%);
-	--primary-blur: hsla(215, 95%, 25%, 0.7);
-	--secondary-blur: hsla(170, 66%, 51%, 0.7);
+	--primary-blur: hsla(215, 95%, 25%, 0.5);
+	--secondary-blur: hsla(170, 66%, 51%, 0.5);
 
 	--light-always: #f5f0f0;
 	--dark-always: #080e21;
