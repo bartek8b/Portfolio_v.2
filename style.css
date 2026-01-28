@@ -416,7 +416,9 @@ main > section > article > .portfolio-item > div.tools-container {
 main > section > article a.call-to-action-btn.portfolio-item-btn {
 	min-width: calc(var(--space-base) * 6);
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	gap: calc(var(--space-base) / 2);
+	padding: var(--space-base);
 	align-items: center;
 	justify-content: center;
 	border-radius: calc(var(--space-base) / 2);
@@ -588,8 +590,6 @@ section > article > *.show,
 	--bg-body: hsl(225, 47%, 7%);
 	--bg: hsl(225, 62%, 10%);
 	--font: #f5f0f0;
-	--primary-blur: hsla(215, 95%, 25%, 0.3);
-	--secondary-blur: hsla(170, 66%, 51%, 0.3);
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
