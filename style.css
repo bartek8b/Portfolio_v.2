@@ -1,3 +1,7 @@
+html {
+	/* For mobile browsers to change color of bottom bar */
+	background-color: var(--bg-body);
+}
 body {
 	background-color: var(--bg-body);
 	background: linear-gradient(
@@ -243,7 +247,7 @@ main > section.sub-container.solid-bg {
 		radial-gradient(
 			farthest-corner at 0% 0%,
 			var(--primary-blur) 0%,
-			#ffffff00 50%
+			#ffffff00 70%
 		),
 		linear-gradient(0deg, var(--bg) 0% 100%, #ffffff00 100%);
 	background-size: cover;
