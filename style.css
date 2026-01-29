@@ -1,5 +1,12 @@
 body {
 	background-color: var(--bg-body);
+	background: linear-gradient(
+		to bottom,
+		var(--primary-blur) 0%,
+		var(--bg-body) 6rem,
+		var(--bg-body) calc(100% - 16rem),
+		var(--primary-blur) 100%
+	);
 	padding-block: var(--space-base);
 	padding-inline: 20%;
 	-webkit-tap-highlight-color: transparent;
@@ -588,6 +595,16 @@ section > article > *.show,
 	--bg-body: hsl(225, 47%, 7%);
 	--bg: hsl(225, 62%, 10%);
 	--font: #f5f0f0;
+
+	body {
+		background: linear-gradient(
+			to bottom,
+			var(--primary) 0%,
+			var(--bg-body) 6rem,
+			var(--bg-body) calc(100% - 16rem),
+			var(--primary) 100%
+		);
+	}
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
