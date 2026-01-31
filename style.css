@@ -601,6 +601,7 @@ section > article > *.show,
 	--bg-body: hsl(225, 47%, 7%);
 	--bg: hsl(225, 62%, 10%);
 	--font: #f5f0f0;
+	--secondary-blur: hsla(170, 66%, 51%, 0.3);
 
 	.dark-light-btn .icon-dark > svg {
 		display: block;
