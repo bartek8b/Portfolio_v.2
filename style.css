@@ -31,7 +31,7 @@ body {
 }
 @font-face {
 	font-family: 'text-font';
-	src: url(assets/fonts/WorkSans-Medium.ttf);
+	src: url(assets/fonts/SpaceGrotesk-Medium.ttf);
 }
 :root {
 	--space-base: 1rem;
