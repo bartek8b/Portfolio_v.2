@@ -1,452 +1,652 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://8b.com.pl/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://8b.com.pl/" />
 
     <!-- Critical: ustaw theme jak najwcześniej (przed CSS), żeby uniknąć "flash" -->
     <script>
-        (function () {
-            try {
-                // Jeśli data-theme już istnieje (np. z SSR), nie nadpisuj go
-                if (document.documentElement.hasAttribute('data-theme')) return;
+      (function () {
+        try {
+          // Jeśli data-theme już istnieje (np. z SSR), nie nadpisuj go
+          if (document.documentElement.hasAttribute('data-theme')) return;
 
-                const saved = localStorage.getItem('theme');
-                if (saved === 'dark' || saved === 'light') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                    return;
-                }
+          const saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+            return;
+          }
 
-                // preferencja systemowa jako fallback (bezpieczny optional chaining)
-                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')?.matches;
-                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-            } catch (e) {
-                // localStorage może rzucać (np. w trybie prywatnym) — bezpieczny fallback
-            }
-        })();
+          // preferencja systemowa jako fallback (bezpieczny optional chaining)
+          const prefersDark = window.matchMedia?.(
+            '(prefers-color-scheme: dark)',
+          )?.matches;
+          document.documentElement.setAttribute(
+            'data-theme',
+            prefersDark ? 'dark' : 'light',
+          );
+        } catch (e) {
+          // localStorage może rzucać (np. w trybie prywatnym) — bezpieczny fallback
+        }
+      })();
     </script>
 
-    <!-- Preload logo nagłówka — ważne: przed resztą stylesheet/script -->
-    <link rel="preload" as="image" href="assets/logo/logo_small.webp" fetchpriority="high">
+    <!-- Preload fonts / logo nagłówka — ważne: przed resztą stylesheet/script -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/logo/logo_small.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/DotMatrix-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/SpaceGrotesk-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Ustaw meta description dla każdej podstrony -->
-    <meta name="description" content="8b.com.pl Bartłomiej Balcerzak - strony internetowe, web development">
+    <meta
+      name="description"
+      content="8b.com.pl Bartłomiej Balcerzak - strony internetowe, web development"
+    />
 
     <!-- Ustaw Open Graph Protocol (OGP) -->
     <meta property="og:title" content="Bartłomiej Balcerzak" />
     <meta property="og:description" content="Web development | Strony www" />
-    <meta property="og:image"
-        content="https://raw.githubusercontent.com/bartek8b/Portfolio_v.2/main/assets/ogp_image.webp" />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/bartek8b/Portfolio_v.2/main/assets/ogp_image.webp"
+    />
     <meta property="og:url" content="https://8b.com.pl" />
 
     <!-- Style sheets -->
-    <link rel="stylesheet" href="modern-normalize.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" id="silktide-consent-manager-css" href="silktide-consent-manager.css">
+    <link rel="stylesheet" href="modern-normalize.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      id="silktide-consent-manager-css"
+      href="silktide-consent-manager.css"
+    />
 
     <!-- Ustaw odpowiednie skrypty dla podstron -->
     <script src="index.js" defer></script>
     <script src="silktide-consent-manager.js"></script>
     <script>
-        silktideCookieBannerManager.updateCookieBannerConfig({
-            background: {
-                showBackground: false
-            },
-            cookieIcon: {
-                position: "bottomLeft"
-            },
-            cookieTypes: [
-                {
-                    id: "google_analytics_4",
-                    name: "Google Analytics 4",
-                    description: "<p><span style=\"letter-spacing: 0.34px;\">Strona używa plików cookie do analizy ruchu.</span></p><p><span style=\"letter-spacing: 0.34px;\">Twoje dane są anonimowe.</span></p>",
-                    required: false,
-                    onAccept: function () {
-                        // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag() { dataLayer.push(arguments); }
+      silktideCookieBannerManager.updateCookieBannerConfig({
+        background: {
+          showBackground: false,
+        },
+        cookieIcon: {
+          position: 'bottomLeft',
+        },
+        cookieTypes: [
+          {
+            id: 'google_analytics_4',
+            name: 'Google Analytics 4',
+            description:
+              '<p><span style="letter-spacing: 0.34px;">Strona używa plików cookie do analizy ruchu.</span></p><p><span style="letter-spacing: 0.34px;">Twoje dane są anonimowe.</span></p>',
+            required: false,
+            onAccept: function () {
+              // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
 
-                        const script = document.createElement('script');
-                        script.async = true;
-                        script.src = "https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B";
-                        script.onerror = function () {
-                            console.error("Nie udało się załadować Google Analytics.");
-                        };
-                        document.head.appendChild(script);
+              const script = document.createElement('script');
+              script.async = true;
+              script.src =
+                'https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B';
+              script.onerror = function () {
+                console.error('Nie udało się załadować Google Analytics.');
+              };
+              document.head.appendChild(script);
 
-                        script.onload = function () {
-                            gtag('js', new Date());
-                            gtag('config', 'G-5KSZFXCY2B');
-                            gtag('consent', 'update', {
-                                analytics_storage: 'granted',
-                            });
-                            dataLayer.push({
-                                'event': 'consent_accepted_anonimowa_analiza_ruchu',
-                            });
-                        };
-                    },
-                    onReject: function () {
-                        // Aktualizacja zgody na przechowywanie danych analitycznych
-                        if (typeof gtag === "function") {
-                            gtag('consent', 'update', {
-                                analytics_storage: 'denied',
-                            });
-                        } else {
-                            console.warn("Google Analytics nie zostało zainicjalizowane.");
-                        }
-                    }
-                }
-            ],
-            text: {
-                banner: {
-                    description: "",
-                    acceptAllButtonText: "Akceptuj",
-                    acceptAllButtonAccessibleLabel: "Zgoda na pliki cookie",
-                    rejectNonEssentialButtonText: "Odmowa",
-                    rejectNonEssentialButtonAccessibleLabel: "Nie zgadzaj się na pliki cookie",
-                    preferencesButtonText: "Preferences",
-                    preferencesButtonAccessibleLabel: "Toggle preferences"
-                },
-                preferences: {
-                    title: "Preferencje plików cookie",
-                    description: "<p><a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">Jak Google wykorzystuje dane gromadzone podczas korzystania z witryn i aplikacji</a><br></p>",
-                    creditLinkText: "Siltkide",
-                    creditLinkAccessibleLabel: "Get this banner for free"
-                }
+              script.onload = function () {
+                gtag('js', new Date());
+                gtag('config', 'G-5KSZFXCY2B');
+                gtag('consent', 'update', {
+                  analytics_storage: 'granted',
+                });
+                dataLayer.push({
+                  event: 'consent_accepted_anonimowa_analiza_ruchu',
+                });
+              };
             },
-            position: {
-                banner: "bottomCenter"
-            }
-        });
+            onReject: function () {
+              // Aktualizacja zgody na przechowywanie danych analitycznych
+              if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                  analytics_storage: 'denied',
+                });
+              } else {
+                console.warn('Google Analytics nie zostało zainicjalizowane.');
+              }
+            },
+          },
+        ],
+        text: {
+          banner: {
+            description: '',
+            acceptAllButtonText: 'Akceptuj',
+            acceptAllButtonAccessibleLabel: 'Zgoda na pliki cookie',
+            rejectNonEssentialButtonText: 'Odmowa',
+            rejectNonEssentialButtonAccessibleLabel:
+              'Nie zgadzaj się na pliki cookie',
+            preferencesButtonText: 'Preferences',
+            preferencesButtonAccessibleLabel: 'Toggle preferences',
+          },
+          preferences: {
+            title: 'Preferencje plików cookie',
+            description:
+              '<p><a href="https://policies.google.com/technologies/partner-sites" target="_blank">Jak Google wykorzystuje dane gromadzone podczas korzystania z witryn i aplikacji</a><br></p>',
+            creditLinkText: 'Siltkide',
+            creditLinkAccessibleLabel: 'Get this banner for free',
+          },
+        },
+        position: {
+          banner: 'bottomCenter',
+        },
+      });
     </script>
 
     <!-- Ustaw favicon -->
-    <link rel="icon" type="image/webp" href="assets/logo/logo.webp">
+    <link rel="icon" type="image/webp" href="assets/logo/logo.webp" />
 
     <!-- Ustaw tytuł dla każdej podstrony -->
     <title>Bartłomiej Balcerzak | Web development | 8b.com.pl</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Class "site-header" added to different it form siltide header & prevent silktide header form disappear while using Intersection Observer for animations -->
     <header class="site-header">
-        <a href="index.html" aria-label="Strona główna">
-            <img src="assets/logo/logo_small.webp" class="logo-header" alt="Logo 8b.com.pl" loading="eager"
-                fetchpriority="high">
-        </a>
+      <a href="index.html" aria-label="Strona główna">
+        <img
+          src="assets/logo/logo_small.webp"
+          class="logo-header"
+          alt="Logo 8b.com.pl"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </a>
 
-        <button class="dark-light-btn" aria-label="Przełącz motyw: jasny/ciemny">
-            <span class="icon icon-light" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z" />
-                </svg>
-            </span>
-            <span class="icon icon-dark" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M12,2C9.76,2 7.78,3.05 6.5,4.68L16.31,14.5C17.94,13.21 19,11.24 19,9A7,7 0 0,0 12,2M3.28,4L2,5.27L5.04,8.3C5,8.53 5,8.76 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H14.73L18.73,22L20,20.72L3.28,4M9,20V21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9Z" />
-                </svg>
-            </span>
-        </button>
+      <button class="dark-light-btn" aria-label="Przełącz motyw: jasny/ciemny">
+        <span class="icon icon-light" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"
+            />
+          </svg>
+        </span>
+        <span class="icon icon-dark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M12,2C9.76,2 7.78,3.05 6.5,4.68L16.31,14.5C17.94,13.21 19,11.24 19,9A7,7 0 0,0 12,2M3.28,4L2,5.27L5.04,8.3C5,8.53 5,8.76 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H14.73L18.73,22L20,20.72L3.28,4M9,20V21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9Z"
+            />
+          </svg>
+        </span>
+      </button>
     </header>
 
     <nav>
-        <!-- Set class active -->
-        <ul>
-            <li><a aria-current="page" tabindex="0" class="menu-svg-container active" aria-label="Strona główna"
-                    title="Strona główna">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
-                    </svg></a>
-
-            </li>
-            <li><a href="portfolio.html" class="menu-svg-container" aria-label="Portfolio" title="Portfolio">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z" />
-                    </svg></a>
-
-            </li>
-            <li><a href="services.html" class="menu-svg-container" aria-label="Usługi" title="Usługi">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z" />
-                    </svg></a>
-
-            </li>
-            <li><a href="contact.html" class="menu-svg-container" aria-label="Kontakt" title="Kontakt">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
-                    </svg>
-                </a></li>
-        </ul>
+      <!-- Set class active -->
+      <ul>
+        <li>
+          <a
+            aria-current="page"
+            tabindex="0"
+            class="menu-svg-container active"
+            aria-label="Strona główna"
+            title="Strona główna"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="portfolio.html"
+            class="menu-svg-container"
+            aria-label="Portfolio"
+            title="Portfolio"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"
+              /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="services.html"
+            class="menu-svg-container"
+            aria-label="Usługi"
+            title="Usługi"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z"
+              /></svg
+          ></a>
+        </li>
+        <li>
+          <a
+            href="contact.html"
+            class="menu-svg-container"
+            aria-label="Kontakt"
+            title="Kontakt"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
     </nav>
 
     <main>
-        <!-- Set separately for every site -->
-        <section class="sub-container solid-bg">
-            <h1>dedykowane strony www</h1>
-            <article class="duo-container">
-                <div class="duo-left">
-                    <span>
-                        Nazywam się Bartłomiej Balcerzak. Zapraszam do współpracy, dzięki której uzyskasz przyciągającą
-                        uwagę stronę internetową, szytą na miarę Twojej działalności.
-                    </span>
+      <!-- Set separately for every site -->
+      <section class="sub-container solid-bg">
+        <h1>dedykowane strony www</h1>
+        <article class="duo-container">
+          <div class="duo-left">
+            <span>
+              Nazywam się Bartłomiej Balcerzak. Zapraszam do współpracy, dzięki
+              której uzyskasz przyciągającą uwagę stronę internetową, szytą na
+              miarę Twojej działalności.
+            </span>
 
-                    <span>
-                        Oprócz spersonalizownej strony i opieki posprzedażowej, otrzymasz wsparcie w redakcji tekstów i
-                        doborze lub wykonaniu zdjęć.
-                    </span>
+            <span>
+              Oprócz spersonalizownej strony i opieki posprzedażowej, otrzymasz
+              wsparcie w redakcji tekstów i doborze lub wykonaniu zdjęć.
+            </span>
 
-                    <span>Web development po ludzku.</span>
-                </div>
-                <div class="duo-right">
-                    <img src="assets/logo/logo_small.webp" class="hero-logo" alt="Logo 8b.com.pl duże" loading="lazy">
-                    <a href="portfolio.html" class="call-to-action-btn" id="call-to-action-portfolio" role="button"
-                        aria-label="Przejdź do strony Portfolio">Zobacz<br>portfolio</a>
-                </div>
-            </article>
+            <span>Web development po ludzku.</span>
+          </div>
+          <div class="duo-right">
+            <img
+              src="assets/logo/logo_small.webp"
+              class="hero-logo"
+              alt="Logo 8b.com.pl duże"
+              loading="lazy"
+            />
+            <a
+              href="portfolio.html"
+              class="call-to-action-btn"
+              id="call-to-action-portfolio"
+              role="button"
+              aria-label="Przejdź do strony Portfolio"
+              >Zobacz<br />portfolio</a
+            >
+          </div>
+        </article>
+      </section>
 
-        </section>
+      <section class="sub-container">
+        <h1>współpraca</h1>
+        <article class="grid-container process-container">
+          <div class="process-item">
+            <h2>rozmowa</h2>
 
-        <section class="sub-container">
-            <h1>współpraca</h1>
-            <article class="grid-container process-container">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15,4V11H5.17L4,12.17V4H15M16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12V3A1,1 0 0,0 16,2M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z"
+              />
+            </svg>
 
-                <div class="process-item">
-                    <h2>rozmowa</h2>
+            <p class="process-info">
+              &#10004; Ustalenie potrzeb
+              <br />
+              <br />
+              &#10004; Wstępny szkic projektu
+            </p>
+          </div>
 
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M15,4V11H5.17L4,12.17V4H15M16,2H3A1,1 0 0,0 2,3V17L6,13H16A1,1 0 0,0 17,12V3A1,1 0 0,0 16,2M21,6H19V15H6V17A1,1 0 0,0 7,18H18L22,22V7A1,1 0 0,0 21,6Z" />
-                    </svg>
+          <div class="process-item">
+            <h2>umowa</h2>
 
-                    <p class="process-info">
-                        &#10004; Ustalenie potrzeb
-                        <br>
-                        <br>
-                        &#10004; Wstępny szkic projektu
-                    </p>
+            <svg
+              aria-hidden="true"
+              style="transform: rotate(45deg)"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21.71 8.71C22.96 7.46 22.39 6 21.71 5.29L18.71 2.29C17.45 1.04 16 1.61 15.29 2.29L13.59 4H11C9.1 4 8 5 7.44 6.15L3 10.59V14.59L2.29 15.29C1.04 16.55 1.61 18 2.29 18.71L5.29 21.71C5.83 22.25 6.41 22.45 6.96 22.45C7.67 22.45 8.32 22.1 8.71 21.71L11.41 19H15C16.7 19 17.56 17.94 17.87 16.9C19 16.6 19.62 15.74 19.87 14.9C21.42 14.5 22 13.03 22 12V9H21.41L21.71 8.71M20 12C20 12.45 19.81 13 19 13L18 13L18 14C18 14.45 17.81 15 17 15L16 15L16 16C16 16.45 15.81 17 15 17H10.59L7.31 20.28C7 20.57 6.82 20.4 6.71 20.29L3.72 17.31C3.43 17 3.6 16.82 3.71 16.71L5 15.41V11.41L7 9.41V11C7 12.21 7.8 14 10 14S13 12.21 13 11H20V12M20.29 7.29L18.59 9H11V11C11 11.45 10.81 12 10 12S9 11.45 9 11V8C9 7.54 9.17 6 11 6H14.41L16.69 3.72C17 3.43 17.18 3.6 17.29 3.71L20.28 6.69C20.57 7 20.4 7.18 20.29 7.29Z"
+              />
+            </svg>
 
+            <p class="process-info">
+              &#10004; Przyjęcie projektu
+              <br />
+              <br />
+              &#10004; Podpisanie umowy
+            </p>
+          </div>
 
-                </div>
+          <div class="process-item">
+            <h2>realizacja</h2>
 
-                <div class="process-item">
-                    <h2>umowa</h2>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21.71 20.29L20.29 21.71A1 1 0 0 1 18.88 21.71L7 9.85A3.81 3.81 0 0 1 6 10A4 4 0 0 1 2.22 4.7L4.76 7.24L5.29 6.71L6.71 5.29L7.24 4.76L4.7 2.22A4 4 0 0 1 10 6A3.81 3.81 0 0 1 9.85 7L21.71 18.88A1 1 0 0 1 21.71 20.29M2.29 18.88A1 1 0 0 0 2.29 20.29L3.71 21.71A1 1 0 0 0 5.12 21.71L10.59 16.25L7.76 13.42M20 2L16 4V6L13.83 8.17L15.83 10.17L18 8H20L22 4Z"
+              />
+            </svg>
 
-                    <svg aria-hidden="true" style="transform: rotate(45deg);" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M21.71 8.71C22.96 7.46 22.39 6 21.71 5.29L18.71 2.29C17.45 1.04 16 1.61 15.29 2.29L13.59 4H11C9.1 4 8 5 7.44 6.15L3 10.59V14.59L2.29 15.29C1.04 16.55 1.61 18 2.29 18.71L5.29 21.71C5.83 22.25 6.41 22.45 6.96 22.45C7.67 22.45 8.32 22.1 8.71 21.71L11.41 19H15C16.7 19 17.56 17.94 17.87 16.9C19 16.6 19.62 15.74 19.87 14.9C21.42 14.5 22 13.03 22 12V9H21.41L21.71 8.71M20 12C20 12.45 19.81 13 19 13L18 13L18 14C18 14.45 17.81 15 17 15L16 15L16 16C16 16.45 15.81 17 15 17H10.59L7.31 20.28C7 20.57 6.82 20.4 6.71 20.29L3.72 17.31C3.43 17 3.6 16.82 3.71 16.71L5 15.41V11.41L7 9.41V11C7 12.21 7.8 14 10 14S13 12.21 13 11H20V12M20.29 7.29L18.59 9H11V11C11 11.45 10.81 12 10 12S9 11.45 9 11V8C9 7.54 9.17 6 11 6H14.41L16.69 3.72C17 3.43 17.18 3.6 17.29 3.71L20.28 6.69C20.57 7 20.4 7.18 20.29 7.29Z" />
-                    </svg>
+            <p class="process-info">
+              &#10004; Budowa strony
+              <br />
+              <br />
+              &#10004; 2 sesje poprawek
+            </p>
+          </div>
 
-                    <p class="process-info">
-                        &#10004; Przyjęcie projektu
-                        <br>
-                        <br>
-                        &#10004; Podpisanie umowy
-                    </p>
+          <div class="process-item">
+            <h2>wdrożenie</h2>
 
-                </div>
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.5 12C16.5 11.32 16.44 10.66 16.36 10H19.74C19.9 10.64 20 11.31 20 12C20 12.37 19.97 12.73 19.92 13.08C20.61 13.18 21.25 13.4 21.84 13.72C21.94 13.16 22 12.59 22 12C22 6.5 17.5 2 12 2C6.47 2 2 6.5 2 12C2 17.5 6.5 22 12 22C12.59 22 13.16 21.94 13.72 21.84C13.26 21 13 20.03 13 19C13 18.71 13.03 18.43 13.07 18.15C12.75 18.78 12.4 19.39 12 19.96C11.17 18.76 10.5 17.43 10.09 16H13.81C14.41 14.96 15.31 14.12 16.4 13.6C16.46 13.07 16.5 12.54 16.5 12M12 4.03C12.83 5.23 13.5 6.57 13.91 8H10.09C10.5 6.57 11.17 5.23 12 4.03M4.26 14C4.1 13.36 4 12.69 4 12S4.1 10.64 4.26 10H7.64C7.56 10.66 7.5 11.32 7.5 12S7.56 13.34 7.64 14H4.26M5.08 16H8C8.35 17.25 8.8 18.45 9.4 19.56C7.57 18.93 6.03 17.65 5.08 16M8 8H5.08C6.03 6.34 7.57 5.06 9.4 4.44C8.8 5.55 8.35 6.75 8 8M14.34 14H9.66C9.56 13.34 9.5 12.68 9.5 12S9.56 10.65 9.66 10H14.34C14.43 10.65 14.5 11.32 14.5 12S14.43 13.34 14.34 14M14.59 4.44C16.43 5.07 17.96 6.34 18.92 8H15.97C15.65 6.75 15.19 5.55 14.59 4.44M22.5 17.25L17.75 22L15 19L16.16 17.84L17.75 19.43L21.34 15.84L22.5 17.25Z"
+              />
+            </svg>
 
-                <div class="process-item">
-                    <h2>realizacja</h2>
+            <p class="process-info">
+              &#10004; Odebranie projektu
+              <br />
+              <br />
+              &#10004; Publikacja strony
+            </p>
+          </div>
+        </article>
+      </section>
 
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M21.71 20.29L20.29 21.71A1 1 0 0 1 18.88 21.71L7 9.85A3.81 3.81 0 0 1 6 10A4 4 0 0 1 2.22 4.7L4.76 7.24L5.29 6.71L6.71 5.29L7.24 4.76L4.7 2.22A4 4 0 0 1 10 6A3.81 3.81 0 0 1 9.85 7L21.71 18.88A1 1 0 0 1 21.71 20.29M2.29 18.88A1 1 0 0 0 2.29 20.29L3.71 21.71A1 1 0 0 0 5.12 21.71L10.59 16.25L7.76 13.42M20 2L16 4V6L13.83 8.17L15.83 10.17L18 8H20L22 4Z" />
-                    </svg>
+      <section class="sub-container solid-bg">
+        <article class="duo-container">
+          <div class="duo-left">
+            <div class="call-to-contact">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12,5A2,2 0 0,1 14,7C14,7.24 13.96,7.47 13.88,7.69C17.95,8.5 21,11.91 21,16H3C3,11.91 6.05,8.5 10.12,7.69C10.04,7.47 10,7.24 10,7A2,2 0 0,1 12,5M22,19H2V17H22V19Z"
+                />
+              </svg>
+              Sprawdź zakres usług
+            </div>
+          </div>
+          <div class="duo-right">
+            <a
+              href="services.html"
+              class="call-to-action-btn"
+              id="call-to-action-services"
+              role="button"
+              aria-label="Przejdź do strony Usługi"
+              >Oferta</a
+            >
+          </div>
+        </article>
+      </section>
 
-                    <p class="process-info">
-                        &#10004; Budowa strony
-                        <br>
-                        <br>
-                        &#10004; 2 sesje poprawek
-                    </p>
+      <section class="sub-container">
+        <h1>tech stack</h1>
+        <article class="grid-container tech-stack-container">
+          <div class="stack-item">
+            <h2>HTML</h2>
+            <svg
+              id="html"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>HTML5</title>
+              <path
+                d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"
+              />
+            </svg>
+          </div>
 
-                </div>
+          <div class="stack-item">
+            <h2>CSS</h2>
+            <svg
+              id="css"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>CSS</title>
+              <path
+                d="M0 0v20.16A3.84 3.84 0 0 0 3.84 24h16.32A3.84 3.84 0 0 0 24 20.16V3.84A3.84 3.84 0 0 0 20.16 0Zm14.256 13.08c1.56 0 2.28 1.08 2.304 2.64h-1.608c.024-.288-.048-.6-.144-.84-.096-.192-.288-.264-.552-.264-.456 0-.696.264-.696.84-.024.576.288.888.768 1.08.72.288 1.608.744 1.92 1.296q.432.648.432 1.656c0 1.608-.912 2.592-2.496 2.592-1.656 0-2.4-1.032-2.424-2.688h1.68c0 .792.264 1.176.792 1.176.264 0 .456-.072.552-.24.192-.312.24-1.176-.048-1.512-.312-.408-.912-.6-1.32-.816q-.828-.396-1.224-.936c-.24-.36-.36-.888-.36-1.536 0-1.44.936-2.472 2.424-2.448m5.4 0c1.584 0 2.304 1.08 2.328 2.64h-1.608c0-.288-.048-.6-.168-.84-.096-.192-.264-.264-.528-.264-.48 0-.72.264-.72.84s.288.888.792 1.08c.696.288 1.608.744 1.92 1.296.264.432.408.984.408 1.656.024 1.608-.888 2.592-2.472 2.592-1.68 0-2.424-1.056-2.448-2.688h1.68c0 .744.264 1.176.792 1.176.264 0 .456-.072.552-.24.216-.312.264-1.176-.048-1.512-.288-.408-.888-.6-1.32-.816-.552-.264-.96-.576-1.2-.936s-.36-.888-.36-1.536c-.024-1.44.912-2.472 2.4-2.448m-11.031.018c.711-.006 1.419.198 1.839.63.432.432.672 1.128.648 1.992H9.336c.024-.456-.096-.792-.432-.96-.312-.144-.768-.048-.888.24-.12.264-.192.576-.168.864v3.504c0 .744.264 1.128.768 1.128a.65.65 0 0 0 .552-.264c.168-.24.192-.552.168-.84h1.776c.096 1.632-.984 2.712-2.568 2.688-1.536 0-2.496-.864-2.472-2.472v-4.032c0-.816.24-1.44.696-1.848.432-.408 1.146-.624 1.857-.63"
+              />
+            </svg>
+          </div>
 
-                <div class="process-item">
-                    <h2>wdrożenie</h2>
+          <div class="stack-item">
+            <h2>JavaScript</h2>
+            <svg
+              id="js"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>JavaScript</title>
+              <path
+                d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"
+              />
+            </svg>
+          </div>
 
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M16.5 12C16.5 11.32 16.44 10.66 16.36 10H19.74C19.9 10.64 20 11.31 20 12C20 12.37 19.97 12.73 19.92 13.08C20.61 13.18 21.25 13.4 21.84 13.72C21.94 13.16 22 12.59 22 12C22 6.5 17.5 2 12 2C6.47 2 2 6.5 2 12C2 17.5 6.5 22 12 22C12.59 22 13.16 21.94 13.72 21.84C13.26 21 13 20.03 13 19C13 18.71 13.03 18.43 13.07 18.15C12.75 18.78 12.4 19.39 12 19.96C11.17 18.76 10.5 17.43 10.09 16H13.81C14.41 14.96 15.31 14.12 16.4 13.6C16.46 13.07 16.5 12.54 16.5 12M12 4.03C12.83 5.23 13.5 6.57 13.91 8H10.09C10.5 6.57 11.17 5.23 12 4.03M4.26 14C4.1 13.36 4 12.69 4 12S4.1 10.64 4.26 10H7.64C7.56 10.66 7.5 11.32 7.5 12S7.56 13.34 7.64 14H4.26M5.08 16H8C8.35 17.25 8.8 18.45 9.4 19.56C7.57 18.93 6.03 17.65 5.08 16M8 8H5.08C6.03 6.34 7.57 5.06 9.4 4.44C8.8 5.55 8.35 6.75 8 8M14.34 14H9.66C9.56 13.34 9.5 12.68 9.5 12S9.56 10.65 9.66 10H14.34C14.43 10.65 14.5 11.32 14.5 12S14.43 13.34 14.34 14M14.59 4.44C16.43 5.07 17.96 6.34 18.92 8H15.97C15.65 6.75 15.19 5.55 14.59 4.44M22.5 17.25L17.75 22L15 19L16.16 17.84L17.75 19.43L21.34 15.84L22.5 17.25Z" />
-                    </svg>
+          <div class="stack-item">
+            <h2>npm</h2>
+            <svg
+              id="npm"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>npm</title>
+              <path
+                d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"
+              />
+            </svg>
+          </div>
 
-                    <p class="process-info">
-                        &#10004; Odebranie projektu
-                        <br>
-                        <br>
-                        &#10004; Publikacja strony
-                    </p>
+          <div class="stack-item">
+            <h2>Webpack</h2>
+            <svg
+              id="webpack"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>Webpack</title>
+              <path
+                d="M22.1987 18.498l-9.7699 5.5022v-4.2855l6.0872-3.3338 3.6826 2.117zm.6683-.6026V6.3884l-3.5752 2.0544v7.396zm-21.0657.6026l9.7699 5.5022v-4.2855L5.484 16.3809l-3.6826 2.117zm-.6683-.6026V6.3884l3.5751 2.0544v7.396zm.4183-12.2515l10.0199-5.644v4.1434L5.152 7.6586l-.0489.028zm20.8975 0l-10.02-5.644v4.1434l6.4192 3.5154.0489.028 3.5518-2.0427zm-10.8775 13.096l-6.0056-3.2873V8.9384l6.0054 3.4525v6.349zm.8575 0l6.0053-3.2873V8.9384l-6.0053 3.4525zM5.9724 8.1845l6.0287-3.3015L18.03 8.1845l-6.0288 3.4665z"
+              />
+            </svg>
+          </div>
 
-                </div>
+          <div class="stack-item">
+            <h2>React</h2>
+            <svg
+              id="react"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>React</title>
+              <path
+                d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"
+              />
+            </svg>
+          </div>
 
-            </article>
+          <div class="stack-item">
+            <h2>xubuntu</h2>
+            <svg
+              id="xubuntu"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>Xubuntu</title>
+              <path
+                d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0m3.914 4.4736c.3846-.044.1454 1.6067.0528 2.598-.0811.8681-.1263 1.154-.2886 2.1122-.051.301-.2008.6867-.6687.6314-.3924-.0498-.4553-.6959-.4424-.9954.0223-.5142.3031-1.7669.3933-2.217.1158-.5778.469-1.9566.9141-2.1196a.17.17 0 0 1 .0396-.0096m3.2264.7083c.5486.0198-.4157 1.75-.8093 2.6645-.2762.6417-.474 1.1556-.832 2.004-.1188.2813-.484.686-.906.4767-.3543-.1755-.233-.6916.0234-1.2897.369-.8616.6724-1.4374 1.0627-2.0867.3027-.5056.9341-1.6977 1.4033-1.7652a.34.34 0 0 1 .0579-.0037zm-9.2842.4702c.3118.0219.5717.1591.75.375.7699.932.6074 2.532.6746 3.7478 1.2.0653 2.19.2109 3.4687.5845.9745.2847 2.3231.7615 3.1128 1.2744.7867.511 1.377 1.1725 1.5 2.0625.0764.5522-.3435 1.106-.9192 1.612-.5748.5052-1.3265.98-2.1372 1.4253-.8103.445-1.6528.8491-2.3247 1.1624-1.4662.6837-3.0161 1.3499-4.9175 1.5417-5.1549.5202-4.5923-4.1579-4.3923-5.704.1558-1.2045.8004-2.942.9075-3.2586-.1404-.4457-.2497-.8216-.3355-1.2979-.073-.4046-.1122-.8711-.019-1.2751.0918-.398.3595-.8417.8027-1.0269.3513-.1467.6092-.0887.9375.2088.2703.2449.497.6077.7163.9873.3171.5488.4463 1.1183.7178 1.6758.0525.1077.3237.1574.482.1113.0367-.0107.0773-.1032.0563-.175-.3484-1.1915-.5975-2.1766-.424-3.0374.161-.799.8422-.9737 1.3432-.9939"
+              />
+            </svg>
+          </div>
 
+          <div class="stack-item">
+            <h2>git</h2>
+            <svg
+              id="git"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>Git</title>
+              <path
+                d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"
+              />
+            </svg>
+          </div>
 
-        </section>
+          <div class="stack-item">
+            <h2>GitHub Copilot</h2>
+            <svg
+              id="ghcopilot"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>GitHub Copilot</title>
+              <path
+                d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"
+              />
+            </svg>
+          </div>
 
-        <section class="sub-container solid-bg">
-            <article class="duo-container">
-                <div class="duo-left">
-                    <div class="call-to-contact">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M12,5A2,2 0 0,1 14,7C14,7.24 13.96,7.47 13.88,7.69C17.95,8.5 21,11.91 21,16H3C3,11.91 6.05,8.5 10.12,7.69C10.04,7.47 10,7.24 10,7A2,2 0 0,1 12,5M22,19H2V17H22V19Z" />
-                        </svg>
-                        Sprawdź zakres usług
-                    </div>
-                </div>
-                <div class="duo-right">
-                    <a href="services.html" class="call-to-action-btn" id="call-to-action-services" role="button"
-                        aria-label="Przejdź do strony Usługi">Oferta</a>
-                </div>
-            </article>
+          <div class="stack-item">
+            <h2>Google Analytics</h2>
+            <svg
+              id="ga"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <title>Google Analytics</title>
+              <path
+                d="M22.84 2.9982v17.9987c.0086 1.6473-1.3197 2.9897-2.967 2.9984a2.9808 2.9808 0 01-.3677-.0208c-1.528-.226-2.6477-1.5558-2.6105-3.1V3.1204c-.0369-1.5458 1.0856-2.8762 2.6157-3.1 1.6361-.1915 3.1178.9796 3.3093 2.6158.014.1201.0208.241.0202.3619zM4.1326 18.0548c-1.6417 0-2.9726 1.331-2.9726 2.9726C1.16 22.6691 2.4909 24 4.1326 24s2.9726-1.3309 2.9726-2.9726-1.331-2.9726-2.9726-2.9726zm7.8728-9.0098c-.0171 0-.0342 0-.0513.0003-1.6495.0904-2.9293 1.474-2.891 3.1256v7.9846c0 2.167.9535 3.4825 2.3505 3.763 1.6118.3266 3.1832-.7152 3.5098-2.327.04-.1974.06-.3983.0593-.5998v-8.9585c.003-1.6474-1.33-2.9852-2.9773-2.9882z"
+              />
+            </svg>
+          </div>
+        </article>
+      </section>
 
-        </section>
-
-        <section class="sub-container">
-            <h1>tech stack</h1>
-            <article class="grid-container tech-stack-container">
-
-                <div class="stack-item">
-                    <h2>HTML</h2>
-                    <svg id="html" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>HTML5</title>
-                        <path
-                            d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>CSS</h2>
-                    <svg id="css" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>CSS</title>
-                        <path
-                            d="M0 0v20.16A3.84 3.84 0 0 0 3.84 24h16.32A3.84 3.84 0 0 0 24 20.16V3.84A3.84 3.84 0 0 0 20.16 0Zm14.256 13.08c1.56 0 2.28 1.08 2.304 2.64h-1.608c.024-.288-.048-.6-.144-.84-.096-.192-.288-.264-.552-.264-.456 0-.696.264-.696.84-.024.576.288.888.768 1.08.72.288 1.608.744 1.92 1.296q.432.648.432 1.656c0 1.608-.912 2.592-2.496 2.592-1.656 0-2.4-1.032-2.424-2.688h1.68c0 .792.264 1.176.792 1.176.264 0 .456-.072.552-.24.192-.312.24-1.176-.048-1.512-.312-.408-.912-.6-1.32-.816q-.828-.396-1.224-.936c-.24-.36-.36-.888-.36-1.536 0-1.44.936-2.472 2.424-2.448m5.4 0c1.584 0 2.304 1.08 2.328 2.64h-1.608c0-.288-.048-.6-.168-.84-.096-.192-.264-.264-.528-.264-.48 0-.72.264-.72.84s.288.888.792 1.08c.696.288 1.608.744 1.92 1.296.264.432.408.984.408 1.656.024 1.608-.888 2.592-2.472 2.592-1.68 0-2.424-1.056-2.448-2.688h1.68c0 .744.264 1.176.792 1.176.264 0 .456-.072.552-.24.216-.312.264-1.176-.048-1.512-.288-.408-.888-.6-1.32-.816-.552-.264-.96-.576-1.2-.936s-.36-.888-.36-1.536c-.024-1.44.912-2.472 2.4-2.448m-11.031.018c.711-.006 1.419.198 1.839.63.432.432.672 1.128.648 1.992H9.336c.024-.456-.096-.792-.432-.96-.312-.144-.768-.048-.888.24-.12.264-.192.576-.168.864v3.504c0 .744.264 1.128.768 1.128a.65.65 0 0 0 .552-.264c.168-.24.192-.552.168-.84h1.776c.096 1.632-.984 2.712-2.568 2.688-1.536 0-2.496-.864-2.472-2.472v-4.032c0-.816.24-1.44.696-1.848.432-.408 1.146-.624 1.857-.63" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>JavaScript</h2>
-                    <svg id="js" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>JavaScript</title>
-                        <path
-                            d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>npm</h2>
-                    <svg id="npm" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>npm</title>
-                        <path
-                            d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>Webpack</h2>
-                    <svg id="webpack" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true">
-                        <title>Webpack</title>
-                        <path
-                            d="M22.1987 18.498l-9.7699 5.5022v-4.2855l6.0872-3.3338 3.6826 2.117zm.6683-.6026V6.3884l-3.5752 2.0544v7.396zm-21.0657.6026l9.7699 5.5022v-4.2855L5.484 16.3809l-3.6826 2.117zm-.6683-.6026V6.3884l3.5751 2.0544v7.396zm.4183-12.2515l10.0199-5.644v4.1434L5.152 7.6586l-.0489.028zm20.8975 0l-10.02-5.644v4.1434l6.4192 3.5154.0489.028 3.5518-2.0427zm-10.8775 13.096l-6.0056-3.2873V8.9384l6.0054 3.4525v6.349zm.8575 0l6.0053-3.2873V8.9384l-6.0053 3.4525zM5.9724 8.1845l6.0287-3.3015L18.03 8.1845l-6.0288 3.4665z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>React</h2>
-                    <svg id="react" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true">
-                        <title>React</title>
-                        <path
-                            d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>xubuntu</h2>
-                    <svg id="xubuntu" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true">
-                        <title>Xubuntu</title>
-                        <path
-                            d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0m3.914 4.4736c.3846-.044.1454 1.6067.0528 2.598-.0811.8681-.1263 1.154-.2886 2.1122-.051.301-.2008.6867-.6687.6314-.3924-.0498-.4553-.6959-.4424-.9954.0223-.5142.3031-1.7669.3933-2.217.1158-.5778.469-1.9566.9141-2.1196a.17.17 0 0 1 .0396-.0096m3.2264.7083c.5486.0198-.4157 1.75-.8093 2.6645-.2762.6417-.474 1.1556-.832 2.004-.1188.2813-.484.686-.906.4767-.3543-.1755-.233-.6916.0234-1.2897.369-.8616.6724-1.4374 1.0627-2.0867.3027-.5056.9341-1.6977 1.4033-1.7652a.34.34 0 0 1 .0579-.0037zm-9.2842.4702c.3118.0219.5717.1591.75.375.7699.932.6074 2.532.6746 3.7478 1.2.0653 2.19.2109 3.4687.5845.9745.2847 2.3231.7615 3.1128 1.2744.7867.511 1.377 1.1725 1.5 2.0625.0764.5522-.3435 1.106-.9192 1.612-.5748.5052-1.3265.98-2.1372 1.4253-.8103.445-1.6528.8491-2.3247 1.1624-1.4662.6837-3.0161 1.3499-4.9175 1.5417-5.1549.5202-4.5923-4.1579-4.3923-5.704.1558-1.2045.8004-2.942.9075-3.2586-.1404-.4457-.2497-.8216-.3355-1.2979-.073-.4046-.1122-.8711-.019-1.2751.0918-.398.3595-.8417.8027-1.0269.3513-.1467.6092-.0887.9375.2088.2703.2449.497.6077.7163.9873.3171.5488.4463 1.1183.7178 1.6758.0525.1077.3237.1574.482.1113.0367-.0107.0773-.1032.0563-.175-.3484-1.1915-.5975-2.1766-.424-3.0374.161-.799.8422-.9737 1.3432-.9939" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>git</h2>
-                    <svg id="git" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>Git</title>
-                        <path
-                            d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>GitHub Copilot</h2>
-                    <svg id="ghcopilot" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true">
-                        <title>GitHub Copilot</title>
-                        <path
-                            d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z" />
-                    </svg>
-                </div>
-
-                <div class="stack-item">
-                    <h2>Google Analytics</h2>
-                    <svg id="ga" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <title>Google Analytics</title>
-                        <path
-                            d="M22.84 2.9982v17.9987c.0086 1.6473-1.3197 2.9897-2.967 2.9984a2.9808 2.9808 0 01-.3677-.0208c-1.528-.226-2.6477-1.5558-2.6105-3.1V3.1204c-.0369-1.5458 1.0856-2.8762 2.6157-3.1 1.6361-.1915 3.1178.9796 3.3093 2.6158.014.1201.0208.241.0202.3619zM4.1326 18.0548c-1.6417 0-2.9726 1.331-2.9726 2.9726C1.16 22.6691 2.4909 24 4.1326 24s2.9726-1.3309 2.9726-2.9726-1.331-2.9726-2.9726-2.9726zm7.8728-9.0098c-.0171 0-.0342 0-.0513.0003-1.6495.0904-2.9293 1.474-2.891 3.1256v7.9846c0 2.167.9535 3.4825 2.3505 3.763 1.6118.3266 3.1832-.7152 3.5098-2.327.04-.1974.06-.3983.0593-.5998v-8.9585c.003-1.6474-1.33-2.9852-2.9773-2.9882z" />
-                    </svg>
-                </div>
-            </article>
-
-
-        </section>
-
-        <section class="sub-container solid-bg">
-            <article class="duo-container">
-                <div class="duo-left">
-                    <div class="call-to-contact">
-                        <img class="hero-photo" src="assets/hero_photo.webp" alt="" aria-hidden="true">
-                        Zapraszam do kontaktu
-                    </div>
-                </div>
-                <div class="duo-right">
-                    <a class="call-to-action-btn" id="call-to-action-email"
-                        href="mailto:kontakt@8b.com.pl?subject=Formularz%208b.com.pl&body=Odpowiedz%20na%20pytania%20lub%20napisz%20jak%20mogę%20Ci%20pomóc.%0A%0ADla%20kogo/czego%20potrzebujesz%20strony?%0A%0AJakie%20informacje%20ma%20zawierać%20strona?"
-                        role="button" aria-label="kontakt@8b.com.pl, wyślij wiadomość">kontakt@8b.com.pl</a>
-                </div>
-            </article>
-
-        </section>
+      <section class="sub-container solid-bg">
+        <article class="duo-container">
+          <div class="duo-left">
+            <div class="call-to-contact">
+              <img
+                class="hero-photo"
+                src="assets/hero_photo.webp"
+                alt=""
+                aria-hidden="true"
+              />
+              Zapraszam do kontaktu
+            </div>
+          </div>
+          <div class="duo-right">
+            <a
+              class="call-to-action-btn"
+              id="call-to-action-email"
+              href="mailto:kontakt@8b.com.pl?subject=Formularz%208b.com.pl&body=Odpowiedz%20na%20pytania%20lub%20napisz%20jak%20mogę%20Ci%20pomóc.%0A%0ADla%20kogo/czego%20potrzebujesz%20strony?%0A%0AJakie%20informacje%20ma%20zawierać%20strona?"
+              role="button"
+              aria-label="kontakt@8b.com.pl, wyślij wiadomość"
+              >kontakt@8b.com.pl</a
+            >
+          </div>
+        </article>
+      </section>
     </main>
 
     <footer>
-        <img src="assets/logo/logo.webp" alt="Logo 8b.com.pl" loading="lazy">
+      <img src="assets/logo/logo.webp" alt="Logo 8b.com.pl" loading="lazy" />
 
-        <a href="https://github.com/bartek8b" target="_blank" rel="noopener noreferrer"
-            aria-label="Przejdź do mojego profilu github" role="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                    d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
-            </svg>
-        </a>
+      <a
+        href="https://github.com/bartek8b"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Przejdź do mojego profilu github"
+        role="button"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
+          />
+        </svg>
+      </a>
 
-        <a href="https://github.com/bartek8b" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">&copy;
-            2026 Bartłomiej Balcerzak</a>
-
+      <a
+        href="https://github.com/bartek8b"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-hidden="true"
+        tabindex="-1"
+        >&copy; 2026 Bartłomiej Balcerzak</a
+      >
     </footer>
-</body>
-
+  </body>
 </html>
