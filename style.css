@@ -401,9 +401,6 @@ main > section > article > .portfolio-item > img {
   &#calculator {
     max-width: 50%;
   }
-  &#carousel {
-    max-width: 50%;
-  }
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
   /* Only 1 button is now visible, 'code' btn is hidden > not needed fo freelance puropses */
