@@ -386,6 +386,9 @@ main > section > article.grid-container > .stack-item > svg:hover {
   &#ghcopilot {
     fill: #000000;
   }
+    &#gsc {
+    fill: #458CF5;
+  }
 }
 /* .portfolio-container*/
 main > section > article.grid-container.portfolio-container {
