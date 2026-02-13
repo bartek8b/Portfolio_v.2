@@ -389,6 +389,9 @@ main > section > article.grid-container > .stack-item > svg:hover {
   &#gsc {
     fill: #458cf5;
   }
+  &#gtm {
+    fill: #246FDB;
+  }
 }
 /* .portfolio-container*/
 main > section > article.grid-container.portfolio-container {
