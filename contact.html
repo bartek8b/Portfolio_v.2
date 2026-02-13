@@ -12,6 +12,9 @@
     <!-- Ustaw tytuł dla każdej podstrony -->
     <title>Kontakt | 8b.com.pl | Web development</title>
     <link rel="canonical" href="https://8b.com.pl/" />
+    
+    <!-- Ustaw favicon -->
+    <link rel="icon" type="image/webp" href="assets/logo/logo.webp" />
 
     <!-- Ustaw Open Graph Protocol (OGP) -->
     <meta property="og:title" content="Bartłomiej Balcerzak" />
@@ -87,41 +90,20 @@
               '<p><span style="letter-spacing: 0.34px;">Strona używa plików cookie do analizy ruchu.</span></p><p><span style="letter-spacing: 0.34px;">Twoje dane są anonimowe.</span></p>',
             required: false,
             onAccept: function () {
-              // INICJALIZUJ DATA LAYER I GTAG FUNKCJĘ PRZED ŁADOWANIEM SKRYPTU!
               window.dataLayer = window.dataLayer || [];
-              function gtag() {
-                dataLayer.push(arguments);
-              }
-
-              const script = document.createElement('script');
-              script.async = true;
-              script.src =
-                'https://www.googletagmanager.com/gtag/js?id=G-5KSZFXCY2B';
-              script.onerror = function () {
-                console.error('Nie udało się załadować Google Analytics.');
-              };
-              document.head.appendChild(script);
-
-              script.onload = function () {
-                gtag('js', new Date());
-                gtag('config', 'G-5KSZFXCY2B');
-                gtag('consent', 'update', {
-                  analytics_storage: 'granted',
-                });
-                dataLayer.push({
-                  event: 'consent_accepted_anonimowa_analiza_ruchu',
-                });
-              };
+              // Informujemy GTM, że użytkownik kliknął akceptację
+              window.dataLayer.push({
+                event: 'consent_accepted_anonimowa_analiza_ruchu',
+                analytics_storage: 'granted',
+              });
             },
             onReject: function () {
-              // Aktualizacja zgody na przechowywanie danych analitycznych
-              if (typeof gtag === 'function') {
-                gtag('consent', 'update', {
-                  analytics_storage: 'denied',
-                });
-              } else {
-                console.warn('Google Analytics nie zostało zainicjalizowane.');
-              }
+              window.dataLayer = window.dataLayer || [];
+              // Informujemy GTM o braku zgody
+              window.dataLayer.push({
+                event: 'consent_denied',
+                analytics_storage: 'denied',
+              });
             },
           },
         ],
@@ -150,11 +132,33 @@
       });
     </script>
 
-    <!-- Ustaw favicon -->
-    <link rel="icon" type="image/webp" href="assets/logo/logo.webp" />
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-TB2K5ZRV');
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TB2K5ZRV"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Class "site-header" added to different it form siltide header & prevent silktide header form disappear while using Intersection Observer for animations -->
     <header class="site-header">
       <a href="index.html" aria-label="Strona główna">
