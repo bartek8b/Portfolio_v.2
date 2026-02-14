@@ -496,6 +496,11 @@ main > section > article.grid-container .packages-item:not(.middle-pack) {
   margin: 0;
   padding: 0;
 }
+.guaranteed-list-container ul {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-base) * 1);
+}
 .guaranteed-list-container li::marker {
   color: var(--secondary);
 }
