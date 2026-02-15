@@ -758,9 +758,6 @@ section > article > *.show,
   main > section.sub-container {
     padding-inline: calc(var(--space-base) * 2);
   }
-  /* main > section > article.duo-container {
-    grid-template-columns: 3fr 1fr;
-  } */
   .packages-explanation {
     margin-top: calc(var(--space-base) * 2);
   }
