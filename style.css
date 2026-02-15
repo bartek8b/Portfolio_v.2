@@ -12,7 +12,7 @@ body {
     var(--primary-header) 100%
   );
   padding-block: var(--space-base);
-  padding-inline: 20%;
+  padding-inline: 15%;
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
   text-wrap: pretty;
@@ -279,7 +279,7 @@ main > section > article #call-to-action-portfolio {
   text-align: center;
 }
 main > section > article .hero-photo {
-  width: 25%;
+  width: 20%;
   height: auto;
   border-radius: 999rem;
   border: 1px solid var(--font);
@@ -466,7 +466,6 @@ main > section > article.grid-container.packages-container {
 }
 main > section > article.grid-container .packages-item.middle-pack {
   background: linear-gradient(var(--bg) 80%, var(--secondary-blur));
-  scale: 1.05;
 }
 main > section > article.grid-container .packages-item:not(.middle-pack) {
   background: linear-gradient(var(--bg) 80%, var(--primary-blur));
@@ -768,7 +767,7 @@ section > article > *.show,
 }
 @media (max-width: 768px) {
   body {
-    padding-inline: calc(var(--space-base) * 1.5);
+    padding-inline: 5%;
   }
   nav > ul {
     gap: var(--space-base);
