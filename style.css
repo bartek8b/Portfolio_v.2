@@ -259,7 +259,7 @@ main > section.sub-container.solid-bg {
 main > section > article.duo-container {
   display: grid;
   gap: calc(var(--space-base) * 4);
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
 }
 main > section > article .hero-logo {
   max-width: calc(var(--space-base) * 10);
@@ -738,6 +738,9 @@ section > article > *.show,
 }
 /* Media queries */
 @media (min-width: 1920px) {
+  body {
+    padding-inline: 20%;
+  }
   main > section > article.grid-container.process-container {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -747,7 +750,7 @@ section > article > *.show,
 }
 @media (max-width: 1024px) {
   body {
-    padding-inline: 10%;
+    padding-inline: 5%;
   }
   nav > ul {
     gap: calc(var(--space-base) * 2);
@@ -755,19 +758,16 @@ section > article > *.show,
   main > section.sub-container {
     padding-inline: calc(var(--space-base) * 2);
   }
-  main > section > article.duo-container {
+  /* main > section > article.duo-container {
     grid-template-columns: 3fr 1fr;
-  }
-  main > section > article.grid-container.packages-container {
-    grid-template-columns: 1fr;
-  }
+  } */
   .packages-explanation {
     margin-top: calc(var(--space-base) * 2);
   }
 }
 @media (max-width: 768px) {
   body {
-    padding-inline: 5%;
+    padding-inline: 3%;
   }
   nav > ul {
     gap: var(--space-base);
@@ -782,14 +782,14 @@ section > article > *.show,
   main > section > article .hero-logo {
     width: 50%;
   }
-  main > section > article .hero-photo {
-    width: 35%;
-  }
   main > section > article.grid-container.process-container {
     grid-template-columns: 1fr;
   }
   main > section > article a.call-to-action-btn {
     margin-top: var(--space-base);
+  }
+  main > section > article .hero-photo {
+    width: 25%;
   }
   main > section > article.grid-container.portfolio-container {
     grid-template-columns: 1fr;
@@ -806,10 +806,19 @@ section > article > *.show,
   main > section > article div.call-to-contact {
     flex-direction: column;
   }
+  main > section > article.grid-container.packages-container {
+    grid-template-columns: 1fr;
+  }
+  main > section > article.grid-container > div.services-item {
+    width: 94vw;
+  }
 }
 @media (max-width: 360px) {
   body {
-    padding-inline: calc(var(--space-base) * 0.5);
+    padding-inline: 1%;
+  }
+  main > section > article .hero-photo {
+    width: 30%;
   }
 }
 @media (hover: hover) {
