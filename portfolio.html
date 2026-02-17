@@ -11,7 +11,7 @@
       name="description"
       content="Portfolio > Web development po ludzku | Dedykowane strony internetowe | Widoczność w sieci | Utrzymanie strony | Bartłomiej Balcerzak | Warszawa | Polska"
     />
-    <link rel="canonical" href="https://8b.com.pl/portfolio.html">
+    <link rel="canonical" href="https://8b.com.pl/portfolio.html" />
     <!-- Ustaw favicon -->
     <link rel="icon" type="image/webp" href="assets/logo/logo.webp" />
 
@@ -86,22 +86,39 @@
             id: 'google_analytics_4',
             name: 'Google Analytics 4',
             description:
-              '<p><span style="letter-spacing: 0.34px;">Strona używa plików cookie do analizy ruchu.</span></p><p><span style="letter-spacing: 0.34px;">Twoje dane są anonimowe.</span></p>',
+              '<p><span style="letter-spacing: 0.34px;">Strona używa plików cookie do analizy ruchu.</span></p>',
             required: false,
             onAccept: function () {
               window.dataLayer = window.dataLayer || [];
-              // Informujemy GTM, że użytkownik kliknął akceptację
+
+              // 1. Oficjalna aktualizacja stanu zgody dla Google (Consent Mode v2)
+              gtag('consent', 'update', {
+                analytics_storage: 'granted',
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted',
+              });
+
+              // 2. Niestandardowe zdarzenie dla GTM
               window.dataLayer.push({
                 event: 'consent_accepted_anonimowa_analiza_ruchu',
-                analytics_storage: 'granted',
               });
             },
+
             onReject: function () {
               window.dataLayer = window.dataLayer || [];
-              // Informujemy GTM o braku zgody
+
+              // 1. Oficjalna aktualizacja stanu zgody na 'denied'
+              gtag('consent', 'update', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+              });
+
+              // 2. Poinformowanie GTM o odrzuceniu
               window.dataLayer.push({
                 event: 'consent_denied',
-                analytics_storage: 'denied',
               });
             },
           },
@@ -132,6 +149,22 @@
     </script>
 
     <!-- Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      // Denied by default !important for GDPR
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500, // Opcjonalne: czeka chwilę na odczytanie zgody z ciasteczek
+      });
+    </script>
+
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
