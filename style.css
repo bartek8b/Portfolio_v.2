@@ -404,9 +404,6 @@ main > section > article.grid-container > div.portfolio-item {
 }
 main > section > article > .portfolio-item > img {
   max-width: 70%;
-  &#calculator {
-    max-width: 50%;
-  }
 }
 main > section > article > .portfolio-item > div.portfolio-item-btns-container {
   /* Only 1 button is now visible, 'code' btn is hidden > not needed fo freelance puropses */
