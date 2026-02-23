@@ -756,9 +756,6 @@ section > article > *.show,
   .packages-explanation {
     margin-top: calc(var(--space-base) * 2);
   }
-  main > section > article .hero-photo {
-    width: calc(var(--space-base) * 8);
-  }
 }
 @media (max-width: 768px) {
   body {
