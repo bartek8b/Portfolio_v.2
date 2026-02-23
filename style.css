@@ -273,19 +273,20 @@ main > section > article.duo-container > .duo-right {
   justify-content: center;
   gap: calc(var(--space-base) * 2);
 }
-main > section > article #call-to-action-portfolio {
+main > section > article #call-to-action-consult {
   margin-bottom: calc(var(--space-base) * 2);
-  min-width: calc(var(--space-base) * 10);
+  min-width: calc(var(--space-base) * 12);
   text-align: center;
 }
 main > section > article .hero-photo {
-  width: 20%;
+  align-self: center;
+  width: 50%;
   height: auto;
   border-radius: 999rem;
   border: 1px solid var(--font);
 }
-main > section > article #call-to-action-email {
-  min-width: calc(var(--space-base) * 14);
+main > section > article #call-to-action-whattsapp {
+  min-width: calc(var(--space-base) * 12);
   padding: var(--space-base);
 }
 /* ----------Main----------grid container---------- */
@@ -782,9 +783,6 @@ section > article > *.show,
   main > section > article a.call-to-action-btn {
     margin-top: var(--space-base);
   }
-  main > section > article .hero-photo {
-    width: 25%;
-  }
   main > section > article.grid-container.portfolio-container {
     grid-template-columns: 1fr;
   }
@@ -810,9 +808,6 @@ section > article > *.show,
 @media (max-width: 360px) {
   body {
     padding-inline: 1%;
-  }
-  main > section > article .hero-photo {
-    width: 30%;
   }
 }
 @media (hover: hover) {
